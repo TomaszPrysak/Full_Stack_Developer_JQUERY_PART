@@ -15,7 +15,7 @@
 // - manipulowania stylami CSS,
 // - dodawania reakcji na zdarzenia HTML, tak samo jako w HTML DOM tylko prościej,
 // - tworzenie efektów i animacji,
-// - AJAX (o tym później),
+// - AJAX,
 // - oraz wiele innych narzędzi.
 
 // A więc jeszcze raz, jQuery to biblioteki zawierające kod JavaScript,
@@ -24,5 +24,53 @@
 
 // 1. Podpinanie pliku z bibliotekami jQuery
 
-// Podobnie jak plik JavaScript podpinamy w pliku HTML w znacznikach SCRIPT,
-// tak samo
+// Biblioteki jQuery do naszej strony internetowej podpinamy podobnie jak
+// byśmy podpinali plik frameworka Bootstrap. Mamy zatem dwie opcje:
+// 1. Ściągamy plik z całą bibliotrką jQuery ze strony jQuery.com. Należy pamiętać
+// że siągamy plik z wersją produkcyjną tzn. taką przeznaczoną dla użytkowników,
+// wykorzystujących tą bibliotekę do tworzenia stron internetowych.
+// Jest jeszcze wersja deweloperska, jednak ona służy do daleszego rozwoju jQuery.
+// 2. Bądź linkujemy do biblioteki jQuery umieszczonej na zewnętrznym serwerze,
+// najczęście na serwerach Google bądź Microsoftu.
+
+// Ad.1. Jeżeli ściagniemy plik z bibliotreką do katalogu z naszą stroną internetową
+// musimy w znaczniku SCRIPT w sekcji HEAD pliku HTML odnieść się do tego
+// pliku z biblioteką jQuery poprzez podanie jego nazwy wraz z rozszerzeniami w atrybucie SRC tego
+// znacznika, tj. SCIRPT, przykład:
+<head>
+<script scr="jquery-3.3.1.min.js"></script>
+</head>
+
+// Ad.2. Linkownaie do biblioteki jQuery umieszczonej na zewnętrznym serwerze jest,
+// wręcz identyczne do sposobu jakbyśmy ściągneli plik z biblioteką jQuery i podpinali
+// go do naszej strony.
+// W tym wypadku również w sekcji HEAD umieszczamy znacznik SCRIPT wraz z atrybutem SRC.
+// I w tym atrybucie podajemy całą ścieżkę adresu internetowego do pliku z bibliotreką
+// jQuery umiesczonego na zewnętrznym  serwerze.
+// Isnieją dwa najpopularniejsze hostingi z bibliotekami jQuery:
+// Hosting na serwerach Google:
+// https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js
+// Przykład:
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+// Hosting na serwerach Microsoft:
+// https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js
+// Przykład:
+<head>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+</head>
+
+// Z dwóch sposobów podpiania bibliotek jQuery zalecana jest ta z linkowaniem
+// do zewnętrznego serwera na którym taka biblioteka jest umieszczona.
+// Przewaga takiego rozwiązania wynika z faktu, że wiele stron internetowych
+// korzysta z bibliotek jQuery. Użytkownik odwiedzającyh jakąkolwiek inna stronę
+// w ktorej były używane biblioteki jQeury powoduje, że zostały one już załadowane
+// do pamięci przeeglądarki internetwoej z której korzysta użytkownik.
+// Jeżeli użytkownik ten odwiedzi naszą stronę wówczas biblioteki nie będą ładowane
+// do pamięci jego przeglądarki ponieważ już będą tam załadowane.
+// A to spowoduje, że nasza strona załaduje się szybciej.
+// Jest to możliwe, że rozpoznawany jest adres do hosta bibliotek jQuery.
+// My na naszej stronie użyjemy tego samego adresu. Jeżeli byśmy podpinali
+// biblioteki w postaci pliku który ściągneliśmy, przeglądarka by go nie rozpoznała
+// u musiałaby załadować do swojej pamięci.
