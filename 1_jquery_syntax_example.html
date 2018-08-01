@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery syntax example</title>
+		<style>
+      span{
+        font-weight: bold;
+      }
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" charset="utf-8"></script>
+		<script src="1_jquery_syntax_example.js" charset="utf-8"></script>
+	</head>
+	<body>
+		<h1 class="testowa1">Ćwieczenia z jQuery</h1>
+		<h2>Metody dostepowe do elementów HTML</h2>
+
+		<p>Za pomocą metody <span>$("tag")</span> dającej dostęp do wszystkich elementów poprzez <span>TAG</span> umieścimy w poniższym pustym akapicie tekst: "Wjeżdża jQuery :D" <br>
+		Pamiętaj: w wyniku odwołania się poprzez <span>TAG</span> zwracana jest lista elementów o tym samym znaczniku. Musimy zatem się odwołać poprzez indeks do interesującego nas elementu z tej listy. <br>
+		W jQuery odwołanie się po indeksie dokonujemy poprzez dodanie do polecenia końcówki <span>.eq(index)</span>, a więc całośc będzie nastepująca <span>$("tag").eq(index)</span></p>
+		<p>&nbsp;</p>
+		<button class="testowa1" type="button">Wstaw treść</button>
+
+		<p>Za pomocą metody <span>$("#id")</span> dającej dostęp do elementu poprzez <span>ID</span> umieścimy w poniższym pustym akapicie o id="p1" tekst: "Dżej Dżej... Okocza xD"</p>
+		<p id="p1">&nbsp;</p>
+		<button type="button">Wstaw treść</button>
+
+		<p>Za pomocą metody <span>$(".class")</span> dającej dostęp do wszystkich elementow poprzez <span>CLASS</span> umieścimy w poniższym akapicie o class="testowa1" tekst: "diDżejka xP" <br>
+		Pamiętaj: w wyniku odwołania się poprzez <span>CLASS</span> zwracana jest lista elementów o tej samej klasie. Musimy zatem się odwołać poprzez indeks do interesującego nas elementu z tej listy. <br>
+		W jQuery odwołanie się po indeksie dokonujemy poprzez dodanie do polecenia końcówki <span>.eq(index)</span>, a więc całośc będzie nastepująca <span>$(".class").eq(index)</span></p>
+		<p class="testowa1">&nbsp;</p>
+		<button type="button">Wstaw treść</button>
+
+	</body>
+</html>

@@ -1,7 +1,9 @@
+////////////////////////////
+////////////////////////////
 // jQuery
 //
 // jQuery to nic innego jak JavaScript !!! Tak tak, juz to umiemy :D
-// jdnak nie w takiej czystej postaci jaką umiemy.
+// jdnak nie w takiej czystej postaci jaką znamy.
 // Głównym przeznaczeniem jQuery jest uczynienie JavaScript łatwym w uzyciu.
 // Dzieje się tak, ponieważ jQuery jest biblioteką funkcji, metod i poleceń JavaScript.
 // Za pomocą tak przygotowanej biblioteki JavaScript możemy wykonywać wymagających
@@ -20,7 +22,10 @@
 
 // A więc jeszcze raz, jQuery to biblioteki zawierające kod JavaScript,
 // ktory wywołujemy za pomocą specjalnych poleceń. Dzięki temu mamy oszczędność
-// w ilości napisanego kody.
+// w ilości napisanego kody. Część zadań będziemy musieli wykoać za pomocą czystego
+// JavaScript, ponieważ nie wszystko jest możliwe do zrobienia za pomocą jQuery,
+// jednak może nam oszczędzić wiele lini kodu w sytucjach standardowych, gdzie
+// biblioteki jQuery wystepują.
 
 // 1. Podpinanie pliku z bibliotekami jQuery
 
@@ -46,7 +51,7 @@
 // go do naszej strony.
 // W tym wypadku również w sekcji HEAD umieszczamy znacznik SCRIPT wraz z atrybutem SRC.
 // I w tym atrybucie podajemy całą ścieżkę adresu internetowego do pliku z bibliotreką
-// jQuery umiesczonego na zewnętrznym  serwerze.
+// jQuery umiesczonego na zewnętrznym serwerze.
 // Isnieją dwa najpopularniejsze hostingi z bibliotekami jQuery:
 // Hosting na serwerach Google:
 // https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js
@@ -66,11 +71,11 @@
 // Przewaga takiego rozwiązania wynika z faktu, że wiele stron internetowych
 // korzysta z bibliotek jQuery. Użytkownik odwiedzającyh jakąkolwiek inna stronę
 // w ktorej były używane biblioteki jQeury powoduje, że zostały one już załadowane
-// do pamięci przeeglądarki internetwoej z której korzysta użytkownik.
+// do pamięci przeglądarki internetwoej z której korzysta użytkownik.
 // Jeżeli użytkownik ten odwiedzi naszą stronę wówczas biblioteki nie będą ładowane
 // do pamięci jego przeglądarki ponieważ już będą tam załadowane.
 // A to spowoduje, że nasza strona załaduje się szybciej.
-// Jest to możliwe, że rozpoznawany jest adres do hosta bibliotek jQuery.
+// Jest to możliwe, ponieważ rozpoznawany jest adres do hosta bibliotek jQuery.
 // My na naszej stronie użyjemy tego samego adresu. Jeżeli byśmy podpinali
 // biblioteki w postaci pliku który ściągneliśmy, przeglądarka by go nie rozpoznała
-// u musiałaby załadować do swojej pamięci.
+// i musiałaby załadować go do swojej pamięci.
