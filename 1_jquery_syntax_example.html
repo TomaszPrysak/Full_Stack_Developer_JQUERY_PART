@@ -7,29 +7,75 @@
       span{
         font-weight: bold;
       }
+			table, tr, td{
+				border: 1px solid;
+			}
+			td{
+				height: 30px;
+				width: 150px;
+				text-align: center;
+			}
 		</style>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" charset="utf-8"></script>
 		<script src="1_jquery_syntax_example.js" charset="utf-8"></script>
 	</head>
 	<body>
-		<h1 class="testowa1">Ćwieczenia z jQuery</h1>
+		<h1 class="klasa1">Ćwieczenia z jQuery</h1>
 		<h2>Metody dostepowe do elementów HTML</h2>
 
-		<p>Za pomocą metody <span>$("tag")</span> dającej dostęp do wszystkich elementów poprzez <span>TAG</span> umieścimy w poniższym pustym akapicie tekst: "Wjeżdża jQuery :D" <br>
+		<p>1. Za pomocą metody <span>$("tag")</span> dającej dostęp do wszystkich elementów poprzez <span>TAG</span> umieścimy w poniższym pustym akapicie tekst: "Wjeżdża jQuery :D" <br>
 		Pamiętaj: w wyniku odwołania się poprzez <span>TAG</span> zwracana jest lista elementów o tym samym znaczniku. Musimy zatem się odwołać poprzez indeks do interesującego nas elementu z tej listy. <br>
 		W jQuery odwołanie się po indeksie dokonujemy poprzez dodanie do polecenia końcówki <span>.eq(index)</span>, a więc całośc będzie nastepująca <span>$("tag").eq(index)</span></p>
 		<p>&nbsp;</p>
-		<button class="testowa1" type="button">Wstaw treść</button>
+		<button class="klasa1" type="button">Wstaw treść</button>
 
-		<p>Za pomocą metody <span>$("#id")</span> dającej dostęp do elementu poprzez <span>ID</span> umieścimy w poniższym pustym akapicie o id="p1" tekst: "Dżej Dżej... Okocza xD"</p>
+		<p>2. Za pomocą metody <span>$("#id")</span> dającej dostęp do elementu poprzez <span>ID</span> umieścimy w poniższym pustym akapicie o id="p1" tekst: "Dżej Dżej... Okocza xD"</p>
 		<p id="p1">&nbsp;</p>
 		<button type="button">Wstaw treść</button>
 
-		<p>Za pomocą metody <span>$(".class")</span> dającej dostęp do wszystkich elementow poprzez <span>CLASS</span> umieścimy w poniższym akapicie o class="testowa1" tekst: "diDżejka xP" <br>
+		<p>3. Za pomocą metody <span>$(".class")</span> dającej dostęp do wszystkich elementow poprzez <span>CLASS</span> umieścimy w poniższym akapicie o class="klasa1" tekst: "diDżejka xP" <br>
 		Pamiętaj: w wyniku odwołania się poprzez <span>CLASS</span> zwracana jest lista elementów o tej samej klasie. Musimy zatem się odwołać poprzez indeks do interesującego nas elementu z tej listy. <br>
 		W jQuery odwołanie się po indeksie dokonujemy poprzez dodanie do polecenia końcówki <span>.eq(index)</span>, a więc całośc będzie nastepująca <span>$(".class").eq(index)</span></p>
-		<p class="testowa1">&nbsp;</p>
+		<p class="klasa1">&nbsp;</p>
 		<button type="button">Wstaw treść</button>
+
+		<h2>Odwołania do kolekcji elementów HTML</h2>
+
+		<p>Na przykładzie poniższej tabeli przedstawione zostaną metody wyodrębniania konkretnych elementów <br>
+		z kolekcji, listy elementów zwracanych przed metody dostepowe jQuery.</p>
+
+		<table>
+			<tr>
+				<td>dżejPierwdżej</td>
+				<td>x</td>
+				<td>x</td>
+			</tr>
+			<tr>
+				<td>x</td>
+				<td>dżejŚrodwkowy</td>
+				<td>x</td>
+			</tr>
+			<tr>
+				<td>x</td>
+				<td>x</td>
+				<td>dżejOstatnioej</td>
+			</tr>
+		</table>
+
+		<p>1. Za pomocą metody <span>$("tag").eq(index)</span> wyodrębnimy z pośród zwracanej kolekcji elementów <span>TD</span><br>
+		najbardziej środkową komórkę tabeli, pobierzemy z niej tekst i wyświetlimy w akapicie poniżej.</p>
+		<p id="kolekcje1">&nbsp;</p>
+		<button type="button">Pobierz treść ze środka tabeli</button>
+
+		<p>2. Za pomocą metody <span>$("tag").first()</span> wyodrębnimy z pośród zwracanej kolekcji elementów <span>TD</span><br>
+		pierwszą komórkę tabeli, pobierzemy z niej tekst i wyświetlimy w akapicie poniżej.</p>
+		<p id="kolekcje2">&nbsp;</p>
+		<button type="button">Pobierz treść z pierwszej komórki tabeli</button>
+
+		<p>3. Za pomocą metody <span>$("tag").last()</span> wyodrębnimy z pośród zwracanej kolekcji elementów <span>TD</span><br>
+		ostatnią komórkę tabeli, pobierzemy z niej tekst i wyświetlimy w akapicie poniżej.</p>
+		<p id="kolekcje3">&nbsp;</p>
+		<button type="button">Pobierz treść z ostatniej komórki tabeli</button>
 
 	</body>
 </html>

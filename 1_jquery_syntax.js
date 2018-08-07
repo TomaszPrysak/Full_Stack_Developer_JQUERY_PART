@@ -63,6 +63,23 @@ $(function() {
 
 ////////////////////////////
 ////////////////////////////
+// Osobny plik do poleceń jQuery
+
+// Pomimo, że do naszej strony w sekcji HEAD podpinamy / lunkujemy bliblioteki jQuery
+// To możemy ponizej użyć dodatkowego znacznika SCRIPT w ktorym podepniemy plik
+// w ktorym będziemy używać poleceń jQuery na naszej stronie internetowej.
+// Umieszczenie kodu w funkcji opisanej powyżej pozwoli uniknać braku załadowania elementów
+// przed załadowaniem pliku JavaScript.
+// Ważna uwaga. W tym naszym pliku może zarówno używać pliku JavaScript jak i jQuery.
+// Bo jQuery to po prostu JavaScript.
+// Przykład podpinania plików:
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" charset="utf-8"></script>
+	<script src="jquery_file.js" charset="utf-8"></script>
+</head>
+
+////////////////////////////
+////////////////////////////
 // Odwołania jQuery do elementów HTML
 
 // Jak już było wpominane, odwołania jQuery pozwalaja na znajdowanie elementów HTML
@@ -73,11 +90,14 @@ $(function() {
 
 // Podstawowe polecenia do pobierania elementów:
 
-// 1. Zwracanie po znaczniku HTML
+// 1. Zwracanie po znaczniku HTML / TAGU
 $("tag") // zwraca wszystkie elememty HTML danego znacznika
 //Na przykład:
 $("p") // zwraca wszystkie akapity na stronie w postaci listy, podobnej do
 // normalnej listy JavaScript. Indeksy na tej liście są więc numerowane od 0.
+// Elementy będą uporządkowane od wystepowania na stronie. Pierwszy znacznik bedzie
+// w tej liście pod indeksem 0. Należy pamiętać, że mimo zwracana jest nam lista
+// to nie możemy na niej wykonać metod takie jakie wykonujemy normalnie w kodzie JavaScript.
 
 // 2. Zwracanie po ID
 // Ponieważ tylko jeden element na stronie internetowej może mieć atrubyt ID
@@ -94,3 +114,91 @@ $(".class") // zwraca wszystkie elementy HTML którym została nadana konkretna 
 $(".przyciskiDuże") // zwróci wszystkie elementy które posiadaja atrybut class="przyciskiDuże"
 // w postaci listy, podobnej do normalnej listy w JavaScript. Indeksy na tej liście
 // są wiec numerowane od 0.
+// Elementy będą uporządkowane od wystepowania na stronie. Pierwszy znacznik bedzie
+// w tej liście pod indeksem 0. Należy pamiętać, że mimo zwracana jest nam lista
+// to nie możemy na niej wykonać metod takie jakie wykonujemy normalnie w kodzie JavaScript.
+
+// Skoro pobieranie elementuów nastepuje poprzez składnię CSS nie musimy się ograniczać
+// do prostego pobierania elementów poprzez wskazywanie TAGa elementu, jego ID bądź
+// jego CLASS. Składnia CSS pozwala na dużo więcej i możliwość docierania do zagnieżdżonych
+// elementów. A więc przykładowe zapytania jQuery:
+$("*") // zwraca wszystkie elementy HTML w sekcji BODy
+$(this) // zwraca bieżący element na ktorym jest wywoływany
+$("p:first") // zwraca pierwszy element P wystepujacy na stronie
+$("ul li:first-child") // zwraca pierwszy element listy LI w każdej liście nieuporzadkowanej UL
+$("div.czerwony") // zwraca DIV o klasie czerwony
+$("div p") // zwraca wszystkie P znajdujące się w DIV
+$("div#cnt > p") // zwraca wszystkie P mieszczące się bezpośrednio w DIV o id="cnt"
+$("p:first-of-type") // zwraca wszystkie P, które są pierwszymi elementami danego typu
+$("img[width=100]") // zwraca wszystkie obrazki IMG, które mają atrybut width="100"
+$(":checkbox ~ label") // zwraca wszystkie LABEL, które następują po checkbox na danym poziomie drzewa
+$("[href]") // zwraca wszystkie elementy zaweirające atrybut HREF
+$(":button") // zwraca wszystkie elementy będące type="button"
+$("a[target='_blank']") // zwraca wszystkie A gdzie atrybut TARGET równy jest "_BLNANK"
+$("a[target!='_blank']") // zwraca wszystkie A gdzie atrybut TARGET nie równy jest "_BLNANK"
+
+// Powyższe to tylko przykłady, warto odwiedzić stronę gdzie przedstawione są
+// selektory CSS. W  katalogu z kursem są odpowiednie linki.
+
+// Ponieważ metody odstepowe jQuery do elementów HTML mogą zwracać listy (dokładnie
+// tak jak w czystym JavaScript) jQuery udostempnia nam też sporo metod dodatkowych,
+// które są odpowiednikami CSS3 i pozwalają nam odnośić się do konkretnych
+// pozycji z tej zwracanej listy elementów HTML. Najcześciej używanymi są:
+
+.eq(index) // zwraca z listy element o danym indeksie
+// Na przykład:
+$("p").eq(2) // zwróci 3 akapit P z listy wszystkich akapitów
+
+.first() // zwraca pierwszy element z listy
+// Na przykład:
+$("li").first() // zwóric pierwszy element LI z listy wszystkich elementów wchodzących
+// w skład listy UL bądź OL
+
+.last() // zwróci ostatni element z listy
+// Na przykład:
+$("li").last() // zwóric ostatni element LI z listy wszystkich elementów wchodzących
+// w skład listy UL bądź OL
+
+:lt(index) // zwraca wszystkie elementy od indeksie mniejszym od wskazanego.
+// Tę metodę stosujemy w środku składni CSS w metodzie dostępowej do elementu,
+// a nie po kropce jako kolejna metodę.
+// Na przykład:
+$("tr:lt(3)") // zwróci wszystkie wiersze TR tabeli o indeksach 0, 1, 2, czyli
+// mniejsze od indeksu jaki podalismy czyli 3
+
+:gt(index) // zwraca wszystkie elementy od indeksie większym od wskazanego.
+// Tę metodę stosujemy w środku składni CSS w metodzie dostępowej do elementu,
+// a nie po kropce jako kolejna metodę.
+// Na przykład:
+$("tr:gt(4)" // zwróci wszystkie wiersze TR tabeli o indeksach 5, 6, 7 itd czyli
+// większe od indeksu jaki podalismy czyli 4
+
+.not(boolean) // zwróci element który nie będzie spełniał warunku zpaisanego
+// w nawiasie.
+// Na przykład:
+$("div").not(".green, #blue") // zwróci element (lub kilka) DIV który nie bedzie
+// miał id="blue" lub nie bedzie miał class="green"
+
+.is(selectorElement) // zwórci element który bedzie spełniac warunek zapisany w nawiasie
+// Jednakże, NIE jest ono przeciwieństwiem wyżej opisywanej metory not().
+// W powyższym przykładzie zastosowanie is():
+$("div").is(".green, #blue") // NIE zwróci elemntów zawierających id="blue" i klase
+// class="green".
+// Metoda ta najprościej mówiąc odpowiada na pytanie CZY JEST.
+// Na przykład:
+$("p").parent().is("div") // zwróci element P którego rodzicem jest element DIV
+// Odwrotnością not() jest niżej opisywana metoda filter()
+
+.filter(criteria,function(index){code with return}) // zwraca elementy które pasują do kryteriów bądź
+// wykonuje funkcje na elementach, iterując przez nie i jeżeli funkcja na konkretnym elemencie
+// zwróci true to wtedy element ten jest zwracany
+// Przykład z kryteriami:
+$("div").filter(".green, #blue") // zwróci element który ma id="blue" oraz Elementy
+// których klasa jest class="green"
+// Przykład z funkcją:
+$("div").filter(function(index){return index === 1 || $(this).attr("id") === "czwarty";})
+// Zwróci elementy których indeks jest rowny 1 oraz id="czwarty" najpierw iterując przez nie funkcją
+
+////////////////////////////
+////////////////////////////
+// Odwołania jQuery do elementów HTML
