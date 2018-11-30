@@ -2,8 +2,8 @@
 ////////////////////////////
 // jQuery
 //
-// jQuery to nic innego jak JavaScript !!! Tak tak, już to umiemy :D
-// Jdnak nie w takiej czystej postaci jaką znamy.
+// jQuery to nic innego jak JavaScript !!! Tak tak, juz to umiemy :D
+// jdnak nie w takiej czystej postaci jaką znamy.
 // Głównym przeznaczeniem jQuery jest uczynienie JavaScript łatwym w uzyciu.
 // Dzieje się tak, ponieważ jQuery jest biblioteką funkcji, metod i poleceń JavaScript.
 // Za pomocą tak przygotowanej biblioteki JavaScript możemy wykonywać wymagających

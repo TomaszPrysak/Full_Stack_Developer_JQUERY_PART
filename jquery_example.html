@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery syntax example</title>
+		<style>
+      span{
+        font-weight: bold;
+      }
+			table, tr, td{
+				border: 1px solid;
+			}
+			td{
+				height: 30px;
+				width: 150px;
+				text-align: center;
+			}
+			.ancestors * {
+			    display: block;
+			    border: 2px solid lightgrey;
+			    color: lightgrey;
+			    padding: 5px;
+			    margin: 15px;
+			}
+			.descendants *, .descendantsParent {
+			    display: block;
+			    border: 2px solid lightgrey;
+			    color: lightgrey;
+			    padding: 5px;
+			    margin: 15px;
+			}
+			.blings * {
+					display: block;
+					border: 2px solid lightgrey;
+					color: lightgrey;
+					padding: 5px;
+					margin: 15px;
+			}
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" charset="utf-8"></script>
+		<script src="jquery_example.js" charset="utf-8"></script>
+	</head>
+	<body>
+		<h1 class="klasa1">Ćwieczenia z jQuery</h1>
+		<h2>Metody dostepowe do elementów HTML</h2>
+
+		<p>1. Za pomocą metody <span>$("tag")</span> dającej dostęp do wszystkich elementów poprzez <span>TAG</span> umieścimy w poniższym pustym akapicie tekst: "Wjeżdża jQuery :D" <br>
+		Pamiętaj: w wyniku odwołania ę poprzez <span>TAG</span> zwracana jest lista elementów o tym samym znaczniku. Musimy zatem się odwołać poprzez indeks do interesującego nas elementu z tej listy. <br>
+		W jQuery odwołanie się po indeksie dokonujemy poprzez dodanie do polecenia końcówki <span>.eq(index)</span>, a więc całośc będzie nastepująca <span>$("tag").eq(index)</span></p>
+		<p>&nbsp;</p>
+		<button class="klasa1" type="button">Wstaw treść</button>
+
+		<p>2. Za pomocą metody <span>$("#id")</span> dającej dostęp do elementu poprzez <span>ID</span> umieścimy w poniższym pustym akapicie o id="p1" tekst: "Dżej Dżej... Okocza xD"</p>
+		<p id="p1">&nbsp;</p>
+		<button type="button">Wstaw treść</button>
+
+		<p>3. Za pomocą metody <span>$(".class")</span> dającej dostęp do wszystkich elementow poprzez <span>CLASS</span> umieścimy w poniższym akapicie o class="klasa1" tekst: "diDżejka xP" <br>
+		Pamiętaj: w wyniku odwołania się poprzez <span>CLASS</span> zwracana jest lista elementów o tej samej klasie. Musimy zatem się odwołać poprzez indeks do interesującego nas elementu z tej listy. <br>
+		W jQuery odwołanie się po indeksie dokonujemy poprzez dodanie do polecenia końcówki <span>.eq(index)</span>, a więc całośc będzie nastepująca <span>$(".class").eq(index)</span></p>
+		<p class="klasa1">&nbsp;</p>
+		<button type="button">Wstaw treść</button>
+
+		<h2>Odwołania do kolekcji elementów HTML</h2>
+
+		<p>Na przykładzie poniższej tabeli przedstawione zostaną metody wyodrębniania konkretnych elementów <br>
+		z kolekcji, listy elementów zwracanych przed metody dostepowe jQuery.</p>
+
+		<table>
+			<tr>
+				<td class="komorka">dżejPierwdżej</td>
+				<td class="komorka">dżejTelmen</td>
+				<td>dżejSon</td>
+			</tr>
+			<tr>
+				<td class="komorka">dżejMik</td>
+				<td class="komorka">dżejŚrodwkowy</td>
+				<td id="fifth" class="komorka">dżokDżejka</td>
+			</tr>
+			<tr>
+				<td class="komorka">dżejSika</td>
+				<td class="komorka">dżokDżej</td>
+				<td class="komorka">dżejOstatnioej</td>
+			</tr>
+		</table>
+
+		<p>1. Za pomocą metody <span>$("tag").eq(index)</span> wyodrębnimy z pośród zwracanej kolekcji elementów <span>TD</span><br>
+		najbardziej środkową komórkę tabeli, pobierzemy z niej tekst i wyświetlimy w akapicie poniżej.</p>
+		<p id="kolekcje1">&nbsp;</p>
+		<button type="button">Pobierz treść ze środka tabeli</button>
+
+		<p>2. Za pomocą metody <span>$("tag").first()</span> wyodrębnimy z pośród zwracanej kolekcji elementów <span>TD</span><br>
+		pierwszą komórkę tabeli, pobierzemy z niej tekst i wyświetlimy w akapicie poniżej.</p>
+		<p id="kolekcje2">&nbsp;</p>
+		<button type="button">Pobierz treść z pierwszej komórki tabeli</button>
+
+		<p>3. Za pomocą metody <span>$("tag").last()</span> wyodrębnimy z pośród zwracanej kolekcji elementów <span>TD</span><br>
+		ostatnią komórkę tabeli, pobierzemy z niej tekst i wyświetlimy w akapicie poniżej.</p>
+		<p id="kolekcje3">&nbsp;</p>
+		<button type="button">Pobierz treść z ostatniej komórki tabeli</button>
+
+		<p>4. Za pomocą metody <span>$("tag:lt(index)")</span> wyodrębnimy z pośród zwracanej kolekcji elementów <span>TD</span><br>
+		komórki których index jest mniejszy od wartości wstawianej w miejscu <span>index</span>, w naszym przykładzie będzie to index == 4.<br>
+		Po wyodrębnienu pokolorujemy te komórki na żółto</p>
+		<button type="button">Pokoloruj na żółto komórki o indeksach od 3 w dół</button>
+
+		<p>5. Za pomocą metody <span>$("tag:gt(index)")</span> wyodrębnimy z pośród zwracanej kolekcji elementów <span>TD</span><br>
+		komórki których index jest większy od wartości wstawianej w miejscu <span>index</span>, w naszym przykładzie będzie to index == 4.<br>
+		Po wyodrębnienu pokolorujemy te komórki na zielono</p>
+		<button type="button">Pokoloruj na zielono komórki o indeksach od 5 w górę</button>
+
+		<p>6. Za pomocą metody <span>$("tag").not(boolean)</span> wyodrębnimy z pośród zwracanej kolekcji elementów <span>TD</span><br>
+		komórkę która NIE zawiera argumentu <span>class="komorka"</span>. Pobierzemy jej zawartość tekstową i umiesicmy w poniższym pustym akapicie.</p>
+		<p id="kolekcje4">&nbsp;</p>
+		<button type="button">Pobierz treść z komórki która nie zawiera class="komorka"</button>
+
+		<p>7. Za pomocą metody <span>$("tag").filter(function(index){code})</span> wyodrębnimy z pośród zwracanej kolekcji elementów <span>TD</span><br>
+		komórki które mają <span>index == 1</span> lub <span>id="fifth"</span> i narzucimy im nowy styl obramowania.</p>
+		<button type="button">Zmień obramowanie dla komórek z zadania</button>
+
+		<h2>Manipulowanie elementami HTML DOM</h2>
+
+		<h3>Zwracanie zawartości - Get / Ustawianie zawartości - Set</h3>
+
+		<p id="wezZawartoscP">Jestem sobie zawartością :P</p>
+		<button id="wezZawartoscButton" type="button">Pobierz zawartość z powyższego akapitu za pomocą metody <span>.text()</span></button>
+
+		<p id="zmienZawartoscP">XXXXX - ale jestem nieuczesany, prosze uczesz mnie, za pomocą poniższego przycisku</p>
+		<button id="zmienZawartoscButton" type="button">Zmien treść powyższego akapitu z pomocą metody <span>.text("new content")</span></button>
+
+		<p id="wezZawartoscHTMLP">Jestem wielką, grubą, pochyloną literką <span><i>O</i></span></p>
+		<button id="wezZawartoscHTMLButton" type="button">Pobierz zawartość z powyższego akapitu za pomocą metody <span>.html()</span></button>
+
+		<p id="zmienZawartoscHTMLP">Ale jestem chudy, proszę nakarm mnie !</p>
+		<button id="zmienZawartoscHTMLButton" type="button">Zmien treść powyższego akapitu wraz z formatowaniem za pomocą metody <span>.html("new content with code HTML")</span></button>
+
+		<p>Jeżeli miałbyś być zwierzęciem to jakim byś chciał być:
+		<input id="wezZawartoscInput" type="text" value="" placeholder="wpisz coś !!!">
+		</p>
+		<button id="wezZawartoscInputButton" type="button">Pobierz zawartość z powyższego formularza za pomocą metody <span>.val()</span></button>
+
+		<p>Jaki jest najlepszy klub piłkarski w Polsce:
+			<input id="zmienZawartoscInput" type="text" value="" placeholder="nazwa klubu">
+		</p>
+		<button id="zmienZawartoscInputButton" type="button">Zmien wartość VALUE powyższego pola INPUT za pomocą metody <span>.val("new value in INPUT tag")</span></button>
+
+		<p>Ludzie, ludzie, oszalałem... kliknijcie w ten link: <a id="wezAtrybutA" href="http://www.kozaczek.pl" target="blank">NUMERY KTÓRE PADNĄ W DUŻYM LOTKU</a></p>
+		<button id="wezAtrybutButton" type="button">Pobierz wartość atrybutu HREF, znacznika A za pomocą metody <span>.attr("href")</span></button>
+
+		<p>Tutaj otrzymasz darmowe BitCoin: <a id="zmienAtrybutA">FREE BITCOINS</a></p>
+		<button id="zmienAtrybutButton" type="button">Zmień, dodaj atrybuty znacznika A za pomocą metody <span>.attr({"atrybut1":"wartosc1","atrybut2":"wartosc2"})</span></button>
+
+		<p id="zmienZawartoscFunkcjP">Stara zawartość</p>
+		<button id="zmienZawartoscFunkcjaButton" type="button">Zmiana zawartości w powyższym akapicie za pomocą funkcji <span>text(function(i, origText){return "New Content"})</span></button>
+
+		<p>Link podmieniony za pomocą funkcji: <a id="zmianaAtrybutuFunkcjaA" target="blank" href="http://www.onet.pl">Onet.pl</a></p>
+		<button id="zmianaAtrybutuFunkcjaButton" type="button">Zmiana atrybuty w powyższym linku za pomocą funkcji <span>.attr("href", function(i, oldValue){return "http://newlink.com"})</span></button>
+
+		<h3>Dodawanie nowych elementów, zawartości - Add</h3>
+
+		<p><b>Metody: .appned() .prepend()</b></p>
+
+		<p id="dodajDoMniePEnd">Jazda !!! Jazda !!! Jazda !!!</p>
+		<button id="dodajDoMnieButtonEnd" type="button">Za pomocą metody <span>.append()</span> do akapitu powyżej dodamy tekst na jego końcu</button>
+
+		<p>Lista marzeń motocykli wg Pitka:
+		<ol id="dodajDoMnieOLBeginning">
+			<li>Ducati Multistrada 950</li>
+			<li>KTM 690 Enduro R</li>
+			<li>MV Agusta Turismo Veloce</li>
+			<li>Ducati Diavel</li>
+		</ol>
+		</p>
+		<button id="dodajDoMnieButtonBeginning" type="button">Za pomocą metody <span>.prepend()</span> do listy powyżej dodamy na nowy podpunkt na jej początku</button>
+
+		<p><b>Metody: .after() .before()</b></p>
+
+		<img id="dodajPrzedPo" src="jquery1.jpg" width="350" height="300">
+		<p></p>
+		<button id="dodajAkapitPrzedButton" type="button">Za pomocą metody <span>.before()</span> przed obrazkiem powyżej dodamy dodatkowy akapit</button>
+		<p></p>
+		<button id="dodajAkapitPoButton" type="button">Za pomocą metody <span>.after()</span> poniżej obrazka powyżej dodamy dodatkowy akapit</button>
+
+		<h3>Porównanie sposobów dodawania, tworzenia nowych znaczników HTML</h3>
+
+		<p>Do porównania sposobów dodawania nowej treści wykorzystamy listę na końcu której będziemy dodawać kolejne znaczniki <span>LI</span> będące nowymi elementami HTML.</p>
+
+		<ol id="porownanieADD">Jestem sobie pusta lista
+		</ol>
+
+		<p>1. Dodawanie, tworzenie nowego elemntu HTML sposobem poprzez zwykły kod HTML<br>
+		Ten sposób jest najprostszym. Sprowadza się do tego, że:<br>
+		a) tworzymy sobie zmienną z treścią będącą kodem HTML, czyli treść nowego elementu HTML zamkniętego w odpowiednie znaczniki np.: <span>var newElementByHTML = "< p >Nowy Akapit< / p >"</span></br>
+		b) wywołujemy metodę <span>.append(newElement)</span> bądź <span>.prepend(newElement)</span> wraz z parametrem, naszą zmienną wczesniej utworzoną, będący naszym nowym elementem HTML.
+		Metodę taką wywołujemy na elemencie do którego chcemy dodadać ten nasz nowy element, np.: <span>$("body").append(newElement)</span>. Tym sposobem dodamy nowy element na końcu lub początku elementu <span>body</span>.
+		Czyli na początku lub końcu naszej strony interentowej. Jednak w naszym przykładzie posłużymy się listą uporządkowaną <span>OL</span>, <span>$("#porownanieADD").text(text).append(porownanie);</span></p>
+		<button id="porownanieADDHTMLButton" type="button">Dodawanie, tworzenie nowego elemntu HTML sposobem poprzez zykły kod HTML</button>
+
+		<p>2. Dodawanie, tworzenie nowego elementu HTML sposobem poprzez jQuery</br>
+		Ten sposób jest troche mniej intuicyjny do normalnego postepowania z jQuery i do odwoływania się do elementów HTML. Wyjaśniając, sprowadza się on do:</br>
+		a) tworzymy sobie zmienną z naszym poleceniem dodającym nowy element <span>$("< li >< / li >").text("Zostałem utworzony z jQuery");</span><br>
+		Pierwsza część powyższego polecenia, tzn. <span>$("< li >< / li >")</span>, w tym przypadku nie oznacza, że odwołujemy się do wszystkich elementów <span>LI</span> tylko określamy jaki rodzaj elementu będziemy tworzyć.<br>
+		W tym przypadku określamy, że będzie to <span>LI</span> podpunkt naszej listy. Ważne jest to aby rodzaj elementu jaki chcemy utworzyć podać w znacznikach z nawiasem, właśnie jak jest w przykładzie. Wówczas to nam mówi, że tworzymy nowy element HTML a nie odwołujemy się do kolekcji.
+		Podając w poleceniu <span>"LI"</span> bez nawiasów oznacza, że odwołujemy się do kolekcji LI. Z nawiasmi określami, tag nowego elementu HTML.<br>
+		Następna część tego polecenia, tzn. <span>.text("Zostałem utworzony z jQuery");</span> już okresla treść naszego nowego elementu. A dokładniej mówiąc, że dodajmyn węzeł tekstowy z naszą treścią.<br>
+		O rodzajach węzłów możemy poczytać w części DOM, w plikach: 2_document_object_model_methods oraz 4_document_object_model_nodes<br>
+		b) następny krok jest identyczny jak krok <span>b)</span> w pierwszym sposobie dodawania, tworzenia elementów HTML za pomocą zwykłego kodu HTML.
+		Tam jest wszystko opisane. Jedyną różnicą jest nasza zmienna będąca argumentem do metody dodającej nowy element HTML. Jednak to już nie ma znaczenia większego.<br></p>
+		<button id="porownanieADDjQueryButton" type="button">Dodawanie, tworzenie nowego elemntu HTML sposobem poprzez jQuery</button>
+
+		<p>3. Dodawnanie, tworzenie nowego elementu HTML sposobem DOM <br>
+		Ten sposób jest najdłuższy, ponieważ wykorzystujemy do tego czysty JavaScritp, czyli DOM HTML. Sposób dodawania nowego elementu takim sposobem była już przedstawiana w rozdziałe DOM_PAR w pliku 2_document_object_model_methods.js<br>
+		Małe przypomnienie:<br>
+		a) tworzymy nowy element / węzeł elementu, w naszym przypadku nowy podpunkt listy punktowanej, <span>var porownanieElement = document.createElement("li");</span>, należy pamiętaj, że w tym momencie jest to element wirtualny,<br>
+		b) następnie tworzymy, również wirtualnie, węzeł typu tekstowego <span>var porownanieText = document.createTextNode("Zostałem utworzony z HTML DOM - przypomocy .createTextNode -> .appendChild");</span>, który później będzie treścią naszego nowo tworzonego podpunktu,<br>
+		c) mając węzeł elementu oraz węzeł tekstowy, dodajemy węzeł tekstowy do węzła elemetu, nadal wszystko wirtualnie, <span>porownanieElement.appendChild(porownanieText);</span>,<br>
+		d) na końcu, tak stworzony podpunkt wraz z treścią dodajemy do rodzica, w naszym przypadku do listy punktowanej, to już odbywa się za pomocą metody jQuery, <span>$("#porownanieADD").text(text).append(porownanieElement);</span>, i jest to identyczne jak w podpunkcie <span>b)</span> w pierwszym sposobie dodawania, tworzenia elementów HTML za pomocą zwykłego kodu HTML.<br>
+		Tam jest wszystko opisane. Jedyną różnicą jest nasza zmienna będąca argumentem do metody dodającej nowy element HTML. Jednak to już nie ma znaczenia większego.</p>
+		<button id="porownanieADDdomButton" type="button">Dodawanie, tworzenie nowego elemntu HTML sposobem poprzez HTML DOM, tzn. czysty JavaScript</button>
+
+		<p>4. Powyżej porównalismy sposoby dodawania, tworzenia nowych elementów HTML.<br>
+		Jednak to co istotne w metodach <span>.append()</span> i <span>.prepend()</span> to przyjmowanie wielu parametrów.<br>
+		A co za tym idzie jednoczesne dodawaie, tworzenie wielu elementów HTML.</p>
+		<button id="porownanieADDManyArg" type="button">Dodawanie, tworzenie kilku nowych elementów jednocześnie poprzez wiele parametrów w metodach <span>.append()</span> bądź <span>.prepend()</span></button>
+
+		<h2>Poruszanie się po drzewku HTML DOM / Relacje między węzłami</h2>
+
+		<h3>Ancestor (przodek)</h3>
+
+		<div class="ancestors">
+		  <div style="width:500px;">div (great-grandparent)
+		    <ul>ul (grandparent)
+		      <li>li (direct parent)
+		        <span id="wezly1">span</span>
+		      </li>
+		    </ul>
+	  	</div>
+		</div>
+
+		<p>1. Za pomocą <span>$("tag").parent()</span> wywołanego na elemencie <span>$("span")</span> w powyższych prostokontach zmienimy kolor obramowania jego rodzica.</p>
+		<button type="button">Pokoloruj rodzica</button>
+
+		<p>2. Za pomocą <span>$("tag").parents()</span> wywołanego na elemencie <span>$("span")</span> w powyższych prostokontach zmienimy kolor obramowania jego wszystkich przodków.</p>
+		<button type="button">Pokoloruj wszystkich przodków</button>
+
+		<p>2.1 Za pomocą <span>$("tag").parents("tag")</span> wywołanego na elemencie <span>$("span")</span> w powyższych prostokontach zmienimy kolor obramowania jednego z przodków którego wskazalismy jako parametr w <span>.parents("tag")</span>.</p>
+		<button type="button">Pokoloruj wybranego przodka</button>
+
+		<p>3. Za pomocą <span>$("tag").parentsUntil("tag")</span> wywołanego na elemencie <span>$("span")</span> w powyższych prostokontach zmienimy kolor obramowania przodków zawierających się pomiędzy elementem <span>span</span> a elemente podanym w argumencie metody: <span>.parentsUntil("div")</span>.</p>
+		<button type="button">Pokoloruj wybranych przodków z pomiędzy</button>
+
+		<h3>Descendant (potomek)</h3>
+
+		<div class="descendantsParent" style="width:500px;">
+			<div class="descendants" style="width:500px;">div (parent)
+	  		<p class="first">p (child)
+	    		<span>span (grandchild)</span>
+	  		</p>
+			  <p class="second">p (child)
+			    <span>span (grandchild)</span>
+			  </p>
+			</div>
+		</div>
+
+		<p>1. Za pomocą <span>$("tag").children()</span> wywołanego na elemencie <span>div o class="descendants"</span> pokolorujemy jego dzieci, pamiętając o tym, że będzie to potomstwo o jeden w dół.</p>
+		<button type="button">Pokoloruj dzieci</button>
+
+		<p>2. Za pomocą <span>$("tag").find("tag")</span> wywołanego na elemencie <span>div o class="descendants"</span> pokolorujemy potomstwo które wskazaliśmy jako parametr w <span>.find("tag")</span>.</p>
+		<button type="button">Pokoloruj wybrane potomstwo</button>
+
+		<p>2.1 Za pomocą <span>$("tag").find("*")</span> wywołanego na elemencie <span>div o class="descendants"</span> pokolorujemy jego całe potomstwo.</p>
+		<button type="button">Pokoloruj całe potomstwo</button>
+
+		<p>2.2 Za pomocą <span>$("tag").find("tag")</span> wywołanego na elemencie <span>div o class="descendants"</span> pokolorujemy potomostwo które wskazaliśmy jako parametr w <span>.find("tag")</span>, jednak zawęziliśmy wyszkukiwanie poprzez zapytanie CSS z dodaniem klasy <span>.find("p.second")</span> . I tak możemy sobie dowolnie zawężać, jak nam pozwala CSS.</p>
+		<button type="button">Pokoloruj przez większe zawężenie</button>
+
+		<h3>Siblings (rodzeństwo)</h3>
+
+		<div class="siblings">
+			<div style="width:500px;">div (parent)
+			  <p>p</p>
+			  <span>span</span>
+			  <h2>h2</h2>
+			  <h3>h3</h3>
+			  <h4>h4</h4>
+			  <h5>h5</h5>
+			  <h6>h6</h6>
+			  <p>p</p>
+			</div>
+		</div>
+
+		<p>1. Za pomocą <span>$("tag").siblings()</span> wywołanego na elemencie <span>$(".siblings h2")</span> pokoloruijemy jego rodzeństwo, pamiętając o tym, że będzie to całe rodzeństwo.</p>
+		<button type="button">Pokoloruj rodzeństwo</button>
+
+		<p>1.1 Za pomocą <span>$("tag").siblings("tag")</span> wywołanego na elemencie <span>$(".siblings h2")</span> pokoloruijemy jego rodzeństwo, ale tylko takie które spełnia nasz warunek podany w nawiasie tej metody, tzn. <span>.siblings(".siblings h6")</span>.</p>
+		<button type="button">Pokoloruj jedno, wybrane, rodzeństwo</button>
+
+		<p>2. Za pomocą <span>$("tag").next()</span> wywołanego na elemencie <span>$(".siblings h3")</span> pokolorujemy element będący jego nastepnym z rodzeństwa.</p>
+		<button type="button">Pokoloruj tylko nastepnego z rodzeństwa</button>
+
+		<p>3. Za pomocą <span>$("tag").nextAll()</span> wywołanego na elemencie <span>$(".siblings h3")</span> pokolorujemy wszystkie elementy będące jako nastepne i będące jego rodzeństwem.</p>
+		<button type="button">Pokoloruj wszystkich następnych z rodzeństwa</button>
+
+		<p>4. Za pomocą <span>$("tag").nextUntil("tag")</span> wywołanego na elemencie <span>$(".siblings h3")</span> pokolorujemy rodzeństwo zawierające się pomiędzy elementem <span>h3</span> a elemenetem podanym w argumencie metodu: <span>.nextUntil(".siblings p")</span>. Musimy pamiętać, że dotyczy to elementów następujących po elemencie na którym jest wywoływana.</p>
+		<button type="button">Pokoloruj wybrane rodzeństwo z pomiędzy przedziału</button>
+
+		<p>5. Za pomocą <span>$("tag").prev()</span> wywołanego na elemencie <span>$(".siblings h3")</span> pokolorujemy element będący jego wcześniejszym z rodzeństwa.</p>
+		<button type="button">Pokoloruj tylko wcześniejszego z rodzeństwa</button>
+
+		<p>6. Za pomocą <span>$("tag").prevAll()</span> wywołanego na elemencie <span>$(".siblings h3")</span> pokolorujemy wszystkie elementy będące jako wcześniejsze i będące jego rodzeństwem.</p>
+		<button type="button">Pokoloruj wszystkich wcześniejszych z rodzeństwa</button>
+
+		<p>7. Za pomocą <span>$("tag").prevUntil("tag")</span> wywołanego na elemencie <span>$(".siblings h3")</span> pokolorujemy rodzeństwo zawierające się pomiędzy elementem <span>h3</span> a elemenetem podanym w argumencie metodu: <span>.nextUntil(".siblings p")</span>. Musimy pamiętać, że dotyczy to elementów wcześniejszych od elementu na którym jest wywoływana.</p>
+		<button type="button">Pokoloruj wybrane rodzeństwo z pomiędzy przedziału</button>
+
+		<h2>Zdarzenia na elementach HTML</h2>
+
+		<p id="kliknijMnie">Widzisz mnie ?! A więc zapraszam... kliknij na mnie, a pokażę Ci zwycięskie numery LOTTO :D</p>
+
+		<p id="podwojnieKliknijMnie">Podwójne kliknięcie na mnie spowoduje, że do końca życia będziesz mieć szcęście ! No dawaj, klikaj !!!</p>
+
+		<p id="najedzMnie">Wiesz, że mam łaskotki na myszkę... Niegdy mnie nie najeżdżaj myszką !</p>
+
+		<p id="zjedzZeMnie">Zaraz kichnę !!! Proszę najedź na mnie myszką, to mi pomoże nie kichać... plissss</p>
+
+		<p id="wcisnijMnie">Proszę wyciśnij mi pryszcza !!! Wystarczy wcisnąć i przytrzymać <span>TU</span></p>
+
+		<p id="puscMnie">No wyciśnij tego proszczya !!! Za krótko przytyrzymałeś, jeszcze raz, wciśnij przytrzymaj dłużek i puść... <span>TU</span></p>
+
+		<p id=wcisnijPuscMnie>Lata mucha...</p>
+
+		Myślisz, że biały ?: <input id="skupSie" type="text" name="eyes"> <br>
+		Myślisz, że czarny ?: <input id="rozluznijSie" style="background-color: black; color: white" type="text" name="hair" value="">
+
+		<p>Nacisnij myszką, a potem puść na poniższym akapicie, a zobaczysz co się stanie:</p>
+		<p id="wielokrotneZdarzenia" style="color: red;">POLSKA !!!</p>
+
+	</body>
+</html>

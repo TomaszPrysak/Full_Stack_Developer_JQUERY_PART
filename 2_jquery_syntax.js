@@ -97,7 +97,12 @@ $("p") // zwraca wszystkie akapity na stronie w postaci listy, podobnej do
 // normalnej listy JavaScript. Indeksy na tej liście są więc numerowane od 0.
 // Elementy będą uporządkowane od wystepowania na stronie. Pierwszy znacznik bedzie
 // w tej liście pod indeksem 0. Należy pamiętać, że mimo zwracana jest nam lista
-// to nie możemy na niej wykonać metod takie jakie wykonujemy normalnie w kodzie JavaScript.
+// to nie możemy na niej wykonać metod takie jakie wykonujemy normalnie w kodzie JavaScript
+// tylko takie które są możliwe w jQuery.
+// W ten sposób wywołana lista elementów (może być na niej jeden elemet) spowoduje,
+// że czynności jakie będziemy na niej dokonywac, będą się dokonywać na każdym elemencie.
+// Chyba, że użyjemy specjalnej metody dostępowej do konkretnego elementu z listy.
+// Jest to metoda .eq(nr). Opisana jest ona w dalszej części rozdziału.
 
 // 2. Zwracanie po ID
 // Ponieważ tylko jeden element na stronie internetowej może mieć atrubyt ID
@@ -140,7 +145,7 @@ $("a[target!='_blank']") // zwraca wszystkie A gdzie atrybut TARGET nie równy j
 // Powyższe to tylko przykłady, warto odwiedzić stronę gdzie przedstawione są
 // selektory CSS. W  katalogu z kursem są odpowiednie linki.
 
-// Ponieważ metody odstepowe jQuery do elementów HTML mogą zwracać listy (dokładnie
+// Ponieważ metody odstępowe jQuery do elementów HTML mogą zwracać listy (dokładnie
 // tak jak w czystym JavaScript) jQuery udostempnia nam też sporo metod dodatkowych,
 // które są odpowiednikami CSS3 i pozwalają nam odnośić się do konkretnych
 // pozycji z tej zwracanej listy elementów HTML. Najcześciej używanymi są:
@@ -182,23 +187,19 @@ $("div").not(".green, #blue") // zwróci element (lub kilka) DIV który nie bedz
 .is(selectorElement) // zwórci element który bedzie spełniac warunek zapisany w nawiasie
 // Jednakże, NIE jest ono przeciwieństwiem wyżej opisywanej metory not().
 // W powyższym przykładzie zastosowanie is():
-$("div").is(".green, #blue") // NIE zwróci elemntów zawierających id="blue" i klase
+$("div").is(".green, #blue") // NIE zwróci elemntów zawierających id="blue" lub klase
 // class="green".
 // Metoda ta najprościej mówiąc odpowiada na pytanie CZY JEST.
 // Na przykład:
 $("p").parent().is("div") // zwróci element P którego rodzicem jest element DIV
 // Odwrotnością not() jest niżej opisywana metoda filter()
 
-.filter(criteria,function(index){code with return}) // zwraca elementy które pasują do kryteriów bądź
+.filter(criteria/function(index){code with return}) // zwraca elementy które pasują do kryteriów bądź
 // wykonuje funkcje na elementach, iterując przez nie i jeżeli funkcja na konkretnym elemencie
 // zwróci true to wtedy element ten jest zwracany
 // Przykład z kryteriami:
-$("div").filter(".green, #blue") // zwróci element który ma id="blue" oraz Elementy
+$("div").filter(".green, #blue") // zwróci element który ma id="blue" lub elementy
 // których klasa jest class="green"
 // Przykład z funkcją:
 $("div").filter(function(index){return index === 1 || $(this).attr("id") === "czwarty";})
 // Zwróci elementy których indeks jest rowny 1 oraz id="czwarty" najpierw iterując przez nie funkcją
-
-////////////////////////////
-////////////////////////////
-// Odwołania jQuery do elementów HTML
