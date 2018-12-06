@@ -36,6 +36,121 @@
 					padding: 5px;
 					margin: 15px;
 			}
+			#wymazMojaZawartoscNekrolog {
+				position: relative;
+				height: 200px;
+				width: 400px;
+				margin: 15px;
+				background-color: Gainsboro;
+			}
+			#wymazMojaZawartoscNekrolog div{
+				position: absolute;
+				top: 15px;
+				left: 15px;
+				height: 160px;
+				width: 360px;
+				border: 5px double black;
+				text-align: center;
+				font-family: sans-serif;
+				font-size: 25px;
+				font-style: oblique;
+			}
+			.dodajKlase1{
+				position: relative;
+				height: 300px;
+				width: 400px;
+				margin: 15px;
+				background-color: deeppink;
+			}
+			.dodajKlase2{
+				position: absolute;
+				top: 20px;
+				left: 20px;
+				border: 5px dashed royalblue;
+				height: 250px;
+				width: 350px;
+			}
+			.dodajKlase3{
+				font-size: 16.5px;
+				text-align: center;
+				font-family: monospace;
+				color: DarkBlue;
+			}
+			.dodajKlase4{
+				color: red;
+			}
+			.dodajKlase5{
+				color: indigo;
+			}
+			.dodajKlase6{
+				font-style: oblique;
+				font-size: 25px;
+			}
+			.usunKlase1{
+				position: relative;
+				height: 200px;
+				width: 400px;
+				margin: 15px;
+				background-color: GreenYellow;
+			}
+			.usunKlase1 div{
+				position: absolute;
+				top: 15px;
+				left: 15px;
+				height: 160px;
+				width: 360px;
+				border-width: 4px;
+				border-radius: 20px;
+				border-style: dotted dashed solid double;
+				text-align: center;
+				font-family: sans-serif;
+				font-size: 25px;
+				font-style: oblique;
+			}
+			.usunKlase1 p:nth-child(2){
+				font-size:20px;
+			}
+			.usunKlase2{
+				color: Crimson;
+				font-style: italic;
+			}
+			.usunKlase3{
+				font-weight: bold;
+				font-size: 30px;
+			}
+			.usunKlase4{
+				color: green;
+			}
+			.przelaczKlase1{
+				position: relative;
+				height: 300px;
+				width: 400px;
+				margin: 15px;
+				background-color: DarkOliveGreen;
+			}
+			.przelaczKlase2{
+				position: absolute;
+				top: 20px;
+				left: 20px;
+				border: 3px double Plum;
+				border-radius: 30px;
+				height: 250px;
+				width: 350px;
+			}
+			.przelaczKlase3{
+				font-size: 16.5px;
+				text-align: center;
+				font-family: Arial, Helvetica, sans-serif;
+				color: Khaki;
+			}
+			#dimensionDIV1, #dimensionDIV2 {
+				height: 100px;
+				width: 300px;
+				padding: 10px;
+				margin: 10px;
+				border: 10px solid blue;
+				background-color: lightblue;
+			}
 		</style>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" charset="utf-8"></script>
 		<script src="jquery_example.js" charset="utf-8"></script>
@@ -182,10 +297,13 @@
 
 		<h3>Porównanie sposobów dodawania, tworzenia nowych znaczników HTML</h3>
 
-		<p>Do porównania sposobów dodawania nowej treści wykorzystamy listę na końcu której będziemy dodawać kolejne znaczniki <span>LI</span> będące nowymi elementami HTML.</p>
+		<p>Do porównania sposobów dodawania nowej treści wykorzystamy listę na końcu której będziemy dodawać kolejne znaczniki <span>LI</span> będące nowymi elementami HTML. To w przypadku metod <span>.append()</span> oraz <span>.append()</span></p>
+		<p>Sposoby dodawania dla metod <span>.before()</span> i <span>.after()</span> będziemy pokazywać na </p>
 
 		<ol id="porownanieADD">Jestem sobie pusta lista
 		</ol>
+
+		<p><span id="porownanieADD2">MUR</span></p>
 
 		<p>1. Dodawanie, tworzenie nowego elemntu HTML sposobem poprzez zwykły kod HTML<br>
 		Ten sposób jest najprostszym. Sprowadza się do tego, że:<br>
@@ -193,7 +311,9 @@
 		b) wywołujemy metodę <span>.append(newElement)</span> bądź <span>.prepend(newElement)</span> wraz z parametrem, naszą zmienną wczesniej utworzoną, będący naszym nowym elementem HTML.
 		Metodę taką wywołujemy na elemencie do którego chcemy dodadać ten nasz nowy element, np.: <span>$("body").append(newElement)</span>. Tym sposobem dodamy nowy element na końcu lub początku elementu <span>body</span>.
 		Czyli na początku lub końcu naszej strony interentowej. Jednak w naszym przykładzie posłużymy się listą uporządkowaną <span>OL</span>, <span>$("#porownanieADD").text(text).append(porownanie);</span></p>
-		<button id="porownanieADDHTMLButton" type="button">Dodawanie, tworzenie nowego elemntu HTML sposobem poprzez zykły kod HTML</button>
+		<button id="porownanieADDHTMLButton" type="button">Dodawanie, tworzenie nowego elemntu HTML sposobem poprzez zykły kod HTML <span>.append()</span></button>
+		<br>
+		<button id="porownanieADDHTMLButton2" type="button">Dodawanie, tworzenie nowego elemntu HTML sposobem poprzez zykły kod HTML <span>.before()</span></button>
 
 		<p>2. Dodawanie, tworzenie nowego elementu HTML sposobem poprzez jQuery</br>
 		Ten sposób jest troche mniej intuicyjny do normalnego postepowania z jQuery i do odwoływania się do elementów HTML. Wyjaśniając, sprowadza się on do:</br>
@@ -205,7 +325,9 @@
 		O rodzajach węzłów możemy poczytać w części DOM, w plikach: 2_document_object_model_methods oraz 4_document_object_model_nodes<br>
 		b) następny krok jest identyczny jak krok <span>b)</span> w pierwszym sposobie dodawania, tworzenia elementów HTML za pomocą zwykłego kodu HTML.
 		Tam jest wszystko opisane. Jedyną różnicą jest nasza zmienna będąca argumentem do metody dodającej nowy element HTML. Jednak to już nie ma znaczenia większego.<br></p>
-		<button id="porownanieADDjQueryButton" type="button">Dodawanie, tworzenie nowego elemntu HTML sposobem poprzez jQuery</button>
+		<button id="porownanieADDjQueryButton" type="button">Dodawanie, tworzenie nowego elemntu HTML sposobem poprzez jQuery <span>.append()</span></button>
+		<br>
+		<button id="porownanieADDjQueryButton2" type="button">Dodawanie, tworzenie nowego elemntu HTML sposobem poprzez jQuery <span>.before()</span></button>
 
 		<p>3. Dodawnanie, tworzenie nowego elementu HTML sposobem DOM <br>
 		Ten sposób jest najdłuższy, ponieważ wykorzystujemy do tego czysty JavaScritp, czyli DOM HTML. Sposób dodawania nowego elementu takim sposobem była już przedstawiana w rozdziałe DOM_PAR w pliku 2_document_object_model_methods.js<br>
@@ -215,12 +337,128 @@
 		c) mając węzeł elementu oraz węzeł tekstowy, dodajemy węzeł tekstowy do węzła elemetu, nadal wszystko wirtualnie, <span>porownanieElement.appendChild(porownanieText);</span>,<br>
 		d) na końcu, tak stworzony podpunkt wraz z treścią dodajemy do rodzica, w naszym przypadku do listy punktowanej, to już odbywa się za pomocą metody jQuery, <span>$("#porownanieADD").text(text).append(porownanieElement);</span>, i jest to identyczne jak w podpunkcie <span>b)</span> w pierwszym sposobie dodawania, tworzenia elementów HTML za pomocą zwykłego kodu HTML.<br>
 		Tam jest wszystko opisane. Jedyną różnicą jest nasza zmienna będąca argumentem do metody dodającej nowy element HTML. Jednak to już nie ma znaczenia większego.</p>
-		<button id="porownanieADDdomButton" type="button">Dodawanie, tworzenie nowego elemntu HTML sposobem poprzez HTML DOM, tzn. czysty JavaScript</button>
+		<button id="porownanieADDdomButton" type="button">Dodawanie, tworzenie nowego elemntu HTML sposobem poprzez HTML DOM, tzn. czysty JavaScript <span>.append()</span></button>
+		<br>
+		<button id="porownanieADDdomButton2" type="button">Dodawanie, tworzenie nowego elemntu HTML sposobem poprzez HTML DOM, tzn. czysty JavaScript <span>.after()</span></button>
 
 		<p>4. Powyżej porównalismy sposoby dodawania, tworzenia nowych elementów HTML.<br>
-		Jednak to co istotne w metodach <span>.append()</span> i <span>.prepend()</span> to przyjmowanie wielu parametrów.<br>
+		Jednak to co istotne w metodach <span>.append()</span>, <span>.prepend()</span>, <span>.before()</span> oraz <span>.after()</span> to przyjmowanie wielu parametrów.<br>
 		A co za tym idzie jednoczesne dodawaie, tworzenie wielu elementów HTML.</p>
 		<button id="porownanieADDManyArg" type="button">Dodawanie, tworzenie kilku nowych elementów jednocześnie poprzez wiele parametrów w metodach <span>.append()</span> bądź <span>.prepend()</span></button>
+		<br>
+		<button id="porownanieADDManyArg2" type="button">Dodawanie, tworzenie kilku nowych elementów jednocześnie poprzez wiele parametrów w metodach <span>.before()</span> bądź <span>.after()</span></button>
+
+		<h3>Usuwanie elementów bądź ich zawartości - Remove</h3>
+
+		<ul id="wymazListeMarzen">Moja lista marzeń:
+			<li id="wymazDziewczyne">Mieć dziewcznye</li>
+			<li id="wymazDom">Wybudować dom pod Warszawą</li>
+			<li id="wymazBMW">Jeździć BMW Series2 na co dzień</li>
+			<li id="wymazTriumpha">Przeżyć kryzys wieku średniego na Triumph`ie Thruxton R 1200</li>
+		</ul>
+		<button id="wymazListeMarzeButton" name="button">Za pomocą metody <span>.remove()</span> usuniemy powyższą listę marzeń wraz z jej zawartością, a tym samym wraz z innymi elementami HTML zawartymi w niej, czyli podpunkatmi, które są elementami HTML</button>
+		<p></p>
+		<button id="wymazElementListyMarzeButton" name="button">Za pomocą metody <span>.remove()</span> usuniemy tylko jeden element listy</button>
+		<p></p>
+		<button id="wymazElementyListyMarzeButton" name="button">Za pomocą metody <span>.remove("tag1, .class, #id")</span> usuniemy konkretne elementy listy marzeń</button>
+
+		<div id="wymazMojaZawartoscNekrolog">
+			<div>
+				<p>NEKROLOG</p>
+				<p style="font-size:20px;">Niemający dziewczyny nieudacznik odszedł. Nie żałuj go. Nie płacz.<br>Był nikim.</p>
+			</div>
+		</div>
+		<button id="wymazMojaZawartoscNekrologButton" name="button">Za pomocą metody <span>.empty()</span> wymażemy całą zawartość powyższego <span>DIV</span> o szarym tle. Jego samego nie usuniemy</button>
+
+		<h2>Manipulowanie stylami CSS</h2>
+
+		<h3>Dodawanie klas - .addClass()</h3>
+
+		<div id="dodajKlase1DIV">
+			<div id="dodajKlase2DIV">
+				<p>SPRZEDAM !!!</p>
+				<p><br>Fiat 126p<br>Roczknik - 1987<br>Przebieg - 2km<br>Wyposażenie:<br>klimatyzacja wielostrefowa, wsp. kierownicy, CarPlay, HUD Display, el. szyby, alufelgi, ABS, ESP<br>POLECAM !!!<br>Nieużywany, stan salonowy</p>
+			</div>
+		</div>
+		<button id="dodajKlase1Button" name="button">Za pomocą metody <span>.addClass()</span> dodamy do powyższych akapitów klasę z odpowiednim formatowaniem</button>
+
+		<div id="dodajKlase3DIV">
+			<h3>Jesteś (h3)</h3>
+			<h4>skończonym (h4)</h4>
+			<p>paradygmatem (p)</p>
+		</div>
+		<button id="dodajKlase2Button" name="button">Za pomocą metody <span>.addClass()</span> dodamy tą samą klasę do powyższych elementów, które różnią się między sobą</button>
+
+		<p id="dodajKlase4P">Dziordzobuszek</p>
+		<button id="dodajKlase3Button" name="button">Za pomocą metody <span>.addClass()</span> dodamy dwie różne klasy do jednego elementu</button>
+
+		<div id="usunKlase1DIV" class="usunKlase1">
+			<div>
+				<p>MATRYMONIALNE</p>
+				<p>Nieudacznik lat 32. Kochający pingwiny. Używający papieru toaletowego.<br>Pozna panią z Goleniów.</p>
+			</div>
+		</div>
+		<button id="usunKlase1Button" name="button">Za pomocą metody <span>.removeClass()</span> usuniemy klasy z elementów w powyższym ogłoszeniu</button>
+
+		<h3>Usuwanie klas - .removeClass()</h3>
+
+		<div id="usunKlase2DIV">
+			<h3 class="usunKlase2">Jestem (h3)</h3>
+			<h4 class="usunKlase2">pochylony (h4)</h4>
+			<p class="usunKlase2">kolorowany (p)</p>
+		</div>
+		<button id="usunKlase2Button" name="button">Za pomocą metody <span>.removeClass()</span> usuniemy tą samą klasę z dwóch róznych powyższych elementów</button>
+
+		<p id="usunKlase3P" class="usunKlase3 usunKlase4">Jestem strasznym, wielkim, zielonym Shrekiem !!!</p>
+		<button id="usunKlase3Button" name="button">Za pomocą metody <span>.removeClass()</span> usuniemy dwie różne klasy z jednego obiektu</button>
+
+		<h3>WŁĄCZ/WYŁĄCZ klasę - .toogleClass()</h3>
+
+		<div id="przelaczKlase1DIV">
+			<div id="przelaczKlase2DIV">
+				<p>WYNAJMĘ !!!</p>
+				<p><br>Gołębnik<br>Pojemność - 189 gołębi<br>Rok budowy - 2010<br>Wyposażenie:<br>automatyczne poidła i odchodniki, ogrzewanie, dwie dziury wylotowe, oświetlenie, monitorig<br>BEZOBSŁUGOWY !!!<br>POLECAM !!!!<br>Leszek</p>
+			</div>
+		</div>
+		<button id="przelaczKlase1Button" name="button">Za pomocą metody <span>.toggleClass()</span> będziemy przełączać powyższe akapity między stanem z klasą (formatowaniem) i bez klasy (bez formatowania). <b>WŁĄCZ/WYŁĄCZ</b></button>
+
+		<h3>Metoda do manipulowania stylami CSS - .css()</h3>
+
+		<p id="wezWlasciwoscCSS" style="color:blue; font-style:italic">wodawodawodawodawodawoda</p>
+		<!-- <p id="wezWlasciwoscCSS" class="usunKlase4">wodawodawodawodawodawoda</p> -->
+		<button id="wezWlasciwoscCSSButton" name="button">Za pomocą metody <span>.css("propertyName")</span> pobierzemy z powyższego akapitu wartość właściwości <span>color</span> z atrybutu <span>style</span></button>
+
+		<p id="wstawWlasciwoscCSS">trawatrawatrawatrawatrawatrawa</p>
+		<button id="wstawWlasciwoscCSSButton" name="button">Za pomocą metody <span>.css("propertyName", "value")</span> ustawimy własciwość <span>color</span> na zielony</button>
+
+		<p><span  id="wstawKilkaWlasciwosciCSS">śniegśniegśniegśniegśniegśnieg</span></p>
+		<button id="wstawKilkaWlasciwosciCSSButton" name="button">Za pomocą metody <span>.css({"propertyName1":"value1", "propertyName2":"value2", ...})</span> ustawimy właściwość <span>background-color</span> oraz <span>color</span></button>
+
+		<h3>Metody dimensions</h3>
+
+		<p><b>Zwracanie wartości wymiarów</b></p>
+
+		<div id="dimensionDIV1">
+		</div>
+		<button id="dimensionReturnWidthHeighButton1" name="button">Za pomocą metod <span>.width</span> oraz <span>.height</span> w powyższym DIV umieścimi informację o jego szerokości i wysokości (BEZ padding, border, margin)</button>
+		<br>
+		<button id="dimensionReturnWidthHeighButton2" name="button">Za pomocą metod <span>.innerWidth()</span> oraz <span>.innerHeight()</span> w powyższym DIV umieścimi informację o jego szerokości i wysokości (Z padding BEZ border, margin)</button>
+		<br>
+		<button id="dimensionReturnWidthHeighButton3" name="button">Za pomocą metod <span>.outerWidth()</span> oraz <span>.outerHeight()</span> w powyższym DIV umieścimi informację o jego szerokości i wysokości (Z padding border BEZ margin)</button>
+		<br>
+		<button id="dimensionReturnWidthHeighButton4" name="button">Za pomocą metod <span>.outerWidth(true)</span> oraz <span>.outerHeight(true)</span> w powyższym DIV umieścimi informację o jego szerokości i wysokości (Z padding border margin)</button>
+
+		<p><b>Ustawianie wartości wymiarów</b></p>
+
+		<div id="dimensionDIV2">
+		</div>
+		<button id="dimensionReturnWidthHeighButton5" name="button">Za pomocą metod <span>.width</span> oraz <span>.height</span> najpeirw zwiększymy wymiary powyższego DIV i umieścimy informację o jego szerokości i wysokości (BEZ padding, border, margin)</button>
+		<br>
+		<button id="dimensionReturnWidthHeighButton6" name="button">Za pomocą metod <span>.innerWidth()</span> oraz <span>.innerHeight()</span> najpeirw zwiększymy wymiary powyższego DIV i umieścimy informację o jego szerokości i wysokości (Z padding BEZ border, margin)</button>
+		<br>
+		<button id="dimensionReturnWidthHeighButton7" name="button">Za pomocą metod <span>.outerWidth()</span> oraz <span>.outerHeight()</span> najpeirw zwiększymy wymiary powyższego DIV i umieścimy informację o jego szerokości i wysokości (Z padding border BEZ margin)</button>
+		<br>
+		<button id="dimensionReturnWidthHeighButton8" name="button">Za pomocą metod <span>.outerWidth(true)</span> oraz <span>.outerHeight(true)</span> najpeirw zwiększymy wymiary powyższego DIV i umieścimy informację o jego szerokości i wysokości (Z padding border margin)</button>
 
 		<h2>Poruszanie się po drzewku HTML DOM / Relacje między węzłami</h2>
 

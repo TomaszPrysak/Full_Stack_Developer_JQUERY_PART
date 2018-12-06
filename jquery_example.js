@@ -128,10 +128,20 @@ $(function() {
 		$("#porownanieADD").text(text).append(porownanie);
 	});
 
+	$("#porownanieADDHTMLButton2").click(function(){
+		var porownanie = "<b>Głową </b>"
+		$("#porownanieADD2").before(porownanie)
+	})
+
 	$("#porownanieADDjQueryButton").click(function(){
 		var porownanie = $("<li></li>").text("Zostałem utworzony z jQuery");
-		var text = "Już nie jestem pusta ... xD"
+		var text = "Już nie jestem pusta ... xD";
 		$("#porownanieADD").text(text).append(porownanie)
+	})
+
+	$("#porownanieADDjQueryButton2").click(function(){
+		var porownanie = $("<i></i>").text("ten jebany ");
+		$("#porownanieADD2").before(porownanie)
 	})
 
 	$("#porownanieADDdomButton").click(function(){
@@ -143,6 +153,15 @@ $(function() {
 		$("#porownanieADD").text(text).append(porownanieElement);
 	})
 
+	$("#porownanieADDdomButton2").click(function(){
+		$("#porownanieADD2").append(" ");
+		var porownanieElement = document.createElement("u");
+		var porownanieText = document.createTextNode(" przebiłem !!!");
+		porownanieElement.appendChild(porownanieText);
+		// porownanieElement.innerHTML = " przebiłwm !!!"
+		$("#porownanieADD2").after(porownanieElement);
+	})
+
 	$("#porownanieADDManyArg").click(function(){
 		var newElementHTML = "<li>Zostałem utworzony z HTML</li>";
 		var newElementjQuery = $("<li></li>").text("Zostałem utworzony z jQuery");
@@ -150,6 +169,16 @@ $(function() {
 		newElementDOM.innerHTML = "Zostałem utworzony z HTML DOM - przy pomocy .innerHTML";
 		var text = "Już nie jestem pusta ... xD"
 		$("#porownanieADD").text(text).append(newElementHTML, newElementjQuery, newElementDOM);
+	});
+
+	$("#porownanieADDManyArg2").click(function(){
+		var newElementHTML = "<b>Głową (HTML) </b>";
+		var newElementjQuery = $("<i></i>").text("ten jebany (jQuery) ");
+		$("#porownanieADD2").append(" ");
+		var newElementDOM = document.createElement("u");
+		newElementDOM.innerHTML = "przebiłem !!! (DOM)"
+		$("#porownanieADD2").before(newElementHTML, newElementjQuery);
+		$("#porownanieADD2").after(newElementDOM);
 	});
 
 	$("#dodajAkapitPrzedButton").click(function(){
@@ -160,129 +189,279 @@ $(function() {
 		$("#dodajPrzedPo").after($("<p></p>").text("Czego drzesz ryja Jarku !!!"));
 	});
 
+	// Usuwanie elementów bądź ich zawartości - Remove
+
+	$("#wymazListeMarzeButton").click(function(){
+		$("#wymazListeMarzen").remove();
+		alert("JESTEŚ NIEUDACZNIKIEM !!! A TACY JAK TY NIE MAJĄ MARZEŃ - GIŃ !!!");
+	});
+
+	$("#wymazElementListyMarzeButton").click(function(){
+		$("#wymazDziewczyne").remove();
+		alert("JESTEŚ NIEUDACZNIKIEM !!! A TAKIMI JAK TY ŻADNA DZIEWCZYNA SIĘ NIE ZAINTERESUJE - GIŃ !!!")
+	});
+
+	$("#wymazElementyListyMarzeButton").click(function(){
+		$("li").remove("#wymazDziewczyne, #wymazDom, #wymazBMW");
+		alert("JESTEŚ TAK ŻAŁOSNY, ŻE AŻ MI CIĘ SZKODA. I NA PEWNO NIE ZASŁUGUJESZ NA DOM POD WARSZAWĄ W KTÓRYM BĘDZIESZ MIESZKAĆ ZE SWOJĄ DZIEWCZYNĄ I DOJEŻDŻAC DO PRACY BMW SERIE2. MOTOCYKL MOŻESZ SOBIE MIEĆ. I TAK NIKOMU NIE ZAIMPONUJESZ. WIEĆ CHOCIAŻ POJEŹDZIJ SOBIE MOTOCYKLEM W TYM MARNYM ŻYCIU !!!")
+	});
+
+	$("#wymazMojaZawartoscNekrologButton").click(function(){
+		$("#wymazMojaZawartoscNekrolog").empty();
+	});
+
+	// Manipulowanie stylami CSS
+
+	// dodawania klas
+
+	$("#dodajKlase1Button").click(function(){
+		$("#dodajKlase1DIV").addClass("dodajKlase1");
+		$("#dodajKlase2DIV").addClass("dodajKlase2");
+		$("#dodajKlase2DIV p").addClass("dodajKlase3");
+	});
+
+	$("#dodajKlase2Button").click(function(){
+		$("#dodajKlase3DIV h3, #dodajKlase3DIV h4").addClass("dodajKlase4");
+	});
+
+	$("#dodajKlase3Button").click(function(){
+		$("#dodajKlase4P").addClass("dodajKlase5 dodajKlase6");
+	});
+
+	// usuwanie klas
+
+	$("#usunKlase1Button").click(function(){
+		$("#usunKlase1DIV").removeClass("usunKlase1");
+	});
+
+	$("#usunKlase2Button").click(function(){
+		$("#usunKlase2DIV h3, #usunKlase2DIV p").removeClass("usunKlase2");
+	});
+
+	$("#usunKlase3Button").click(function(){
+		$("#usunKlase3P").removeClass("usunKlase3 usunKlase4");
+	});
+
+	// włącz / wyłącz klase
+
+	$("#przelaczKlase1Button").click(function(){
+		$("#przelaczKlase1DIV").toggleClass("przelaczKlase1");
+		$("#przelaczKlase2DIV").toggleClass("przelaczKlase2");
+		$("#przelaczKlase2DIV p").toggleClass("przelaczKlase3");
+	});
+
+	// ustawianie właściwości CSS
+
+	$("#wezWlasciwoscCSSButton").click(function(){
+		alert("Kolor przypisany do właściwości 'color' akapitu to: " + $("#wezWlasciwoscCSS").css("color"));
+	});
+
+	$("#wstawWlasciwoscCSSButton").click(function(){
+		$("#wstawWlasciwoscCSS").css("color","Chartreuse");
+	});
+
+	$("#wstawKilkaWlasciwosciCSSButton").click(function(){
+		$("#wstawKilkaWlasciwosciCSS").css({
+			"background-color":"black",
+			"color":"white"
+		});
+	});
+
+	// metody dimensions
+
+	// zwracanie wartości wymiarów
+
+		$("#dimensionReturnWidthHeighButton1").click(function(){
+			var x = $("#dimensionDIV1").width();
+			var y = $("#dimensionDIV1").height();
+			var text = "Szerokość elementu wynosi: " + x + "</br>";
+			text += "Wysokość elementu wynosi: " + y;
+			$("#dimensionDIV1").html(text);
+		});
+
+		$("#dimensionReturnWidthHeighButton2").click(function(){
+			var x = $("#dimensionDIV1").innerWidth();
+			var y = $("#dimensionDIV1").innerHeight();
+			var text = "Szerokość elementu wynosi: " + x + "</br>";
+			text += "Wysokość elementu wynosi: " + y;
+			$("#dimensionDIV1").html(text);
+		});
+
+		$("#dimensionReturnWidthHeighButton3").click(function(){
+			var x = $("#dimensionDIV1").outerWidth();
+			var y = $("#dimensionDIV1").outerHeight();
+			var text = "Szerokość elementu wynosi: " + x + "</br>";
+			text += "Wysokość elementu wynosi: " + y;
+			$("#dimensionDIV1").html(text);
+		});
+
+		$("#dimensionReturnWidthHeighButton4").click(function(){
+			var x = $("#dimensionDIV1").outerWidth(true);
+			var y = $("#dimensionDIV1").outerHeight(true);
+			var text = "Szerokość elementu wynosi: " + x + "</br>";
+			text += "Wysokość elementu wynosi: " + y;
+			$("#dimensionDIV1").html(text);
+		});
+
+		// ustawianie wartości wymiarów
+
+		$("#dimensionReturnWidthHeighButton5").click(function(){
+			var x1 = $("#dimensionDIV2").width(400);
+			var x = $("#dimensionDIV2").width();
+			var y1 = $("#dimensionDIV2").height(200);
+			var y = $("#dimensionDIV2").height();
+			var text = "Szerokość elementu wynosi: " + x + "</br>";
+			text += "Wysokość elementu wynosi: " + y;
+			$("#dimensionDIV2").html(text);
+		});
+
+		$("#dimensionReturnWidthHeighButton6").click(function(){
+			var x = $("#dimensionDIV2").innerWidth();
+			var y = $("#dimensionDIV2").innerHeight();
+			var text = "Szerokość elementu wynosi: " + x + "</br>";
+			text += "Wysokość elementu wynosi: " + y;
+			$("#dimensionDIV2").html(text);
+		});
+
+		$("#dimensionReturnWidthHeighButton7").click(function(){
+			var x = $("#dimensionDIV2").outerWidth();
+			var y = $("#dimensionDIV2").outerHeight();
+			var text = "Szerokość elementu wynosi: " + x + "</br>";
+			text += "Wysokość elementu wynosi: " + y;
+			$("#dimensionDIV2").html(text);
+		});
+
+		$("#dimensionReturnWidthHeighButton8").click(function(){
+			var x = $("#dimensionDIV2").outerWidth(true);
+			var y = $("#dimensionDIV2").outerHeight(true);
+			var text = "Szerokość elementu wynosi: " + x + "</br>";
+			text += "Wysokość elementu wynosi: " + y;
+			$("#dimensionDIV2").html(text);
+		});
+
 	// Funkcje dotyczące rozdziału: "Węzły i relacje między nimi"
 
 	// Ancestor
 
-	$("button").eq(28).click(function(){
-		$("#wezly1").parent().css({"border":"2px solid red", "color": "red"});
-	});
-
-	$("button").eq(29).click(function(){
-		$("#wezly1").parents().css({"border":"2px solid red", "color": "red"});
-	});
-
-	$("button").eq(30).click(function(){
-		$("#wezly1").parents("ul").css({"border":"2px solid red", "color": "red"});
-	});
-
-	$("button").eq(31).click(function(){
-		$("#wezly1").parentsUntil("div").css({"border":"2px solid red", "color": "red"});
-	});
-
-	// Descendant
-
-	$("button").eq(32).click(function(){
-		$(".descendants").children().css({"border":"2px solid red", "color": "red"})
-	})
-
-	$("button").eq(33).click(function(){
-		$(".descendants").find("span").css({"border":"2px solid red", "color": "red"})
-	})
-
-	$("button").eq(34).click(function(){
-		$(".descendants").find("*").css({"border":"2px solid red", "color": "red"})
-	})
-
-	$("button").eq(35).click(function(){
-		$(".descendants").find("p.second").css({"border":"2px solid red", "color": "red"})
-	})
-
-	// Siblings
-
-	$("button").eq(36).click(function(){
-		$(".siblings h2").siblings().css({"border":"2px solid red", "color": "red"})
-	})
-
-	$("button").eq(37).click(function(){
-		$(".siblings h2").siblings(".siblings h6").css({"border":"2px solid red", "color": "red"})
-	})
-
-	$("button").eq(38).click(function(){
-		$(".siblings h3").next().css({"border":"2px solid red", "color": "red"})
-	})
-
-	$("button").eq(39).click(function(){
-		$(".siblings h3").nextAll().css({"border":"2px solid red", "color": "red"})
-	})
-
-	$("button").eq(40).click(function(){
-		$(".siblings h3").nextUntil(".siblings p").css({"border":"2px solid red", "color": "red"})
-	})
-
-	$("button").eq(41).click(function(){
-		$(".siblings h3").prev().css({"border":"2px solid red", "color": "red"})
-	})
-
-	$("button").eq(42).click(function(){
-		$(".siblings h3").prevAll().css({"border":"2px solid red", "color": "red"})
-	})
-
-	$("button").eq(43).click(function(){
-		$(".siblings h3").prevUntil(".siblings p").css({"border":"2px solid red", "color": "red"})
-	})
-
-	// Funkcje dotyczące rozdziału: "Zdarzenia"
-
-	$("#kliknijMnie").click(function(){
-		$(this).text("I gdzie te numery ???? Nie ma ??? buahahahah");
-	})
-
-	$("#podwojnieKliknijMnie").dblclick(function(){
-		$(this).hide();
-		alert("Uppppssss.... czyżby to oznaczało, że nie będzie szczęścia... a może wręcz coś przeciwnego ??? buahahahaha")
-	})
-
-	$("#najedzMnie").mouseenter(function(){
-		$(this).text("łaskoczeeeeeee !!!!")
-	})
-
-	$("#zjedzZeMnie").mouseleave(function(){
-		$(this).text("Dziękuję za pomoc")
-	})
-
-	$("#wcisnijMnie").mousedown(function(){
-		$(this).text("Ehhhhh nie potrzafisz :(")
-	})
-
-	$("#puscMnie").mouseup(function(){
-		$(this).text("Alllleeeeee ulga, teraz jestem piękny ;)")
-	})
-
-	$("#wcisnijPuscMnie").hover(function(){
-		$(this).text("w mucholocie")
-	},
-	function(){
-		$(this).text("Lata mucha...")
-	})
-
-	$("#skupSie").focus(function(){
-		$(this).css({"background-color": "black", "color": "white"})
-	})
-
-	$("#rozluznijSie").blur(function(){
-		$(this).css({"background-color": "white", "color": "black"})
-	})
-
-	$("#wielokrotneZdarzenia").on({
-		mousedown: function(){
-			$(this).css({"background-color": "red", "color": "white"});
-			$(this).text("BIAŁO-CZERWONI !!!");
-		},
-		mouseup: function(){
-			$(this).css({"background-color": "white", "color": "red"});
-			$(this).text("POLSKA !!!");
-		}
-	});
+	// $("button").eq(32).click(function(){
+	// 	$("#wezly1").parent().css({"border":"2px solid red", "color": "red"});
+	// });
+	//
+	// $("button").eq(33).click(function(){
+	// 	$("#wezly1").parents().css({"border":"2px solid red", "color": "red"});
+	// });
+	//
+	// $("button").eq(34).click(function(){
+	// 	$("#wezly1").parents("ul").css({"border":"2px solid red", "color": "red"});
+	// });
+	//
+	// $("button").eq(35).click(function(){
+	// 	$("#wezly1").parentsUntil("div").css({"border":"2px solid red", "color": "red"});
+	// });
+	//
+	// // Descendant
+	//
+	// $("button").eq(36).click(function(){
+	// 	$(".descendants").children().css({"border":"2px solid red", "color": "red"})
+	// })
+	//
+	// $("button").eq(37).click(function(){
+	// 	$(".descendants").find("span").css({"border":"2px solid red", "color": "red"})
+	// })
+	//
+	// $("button").eq(38).click(function(){
+	// 	$(".descendants").find("*").css({"border":"2px solid red", "color": "red"})
+	// })
+	//
+	// $("button").eq(39).click(function(){
+	// 	$(".descendants").find("p.second").css({"border":"2px solid red", "color": "red"})
+	// })
+	//
+	// // Siblings
+	//
+	// $("button").eq(40).click(function(){
+	// 	$(".siblings h2").siblings().css({"border":"2px solid red", "color": "red"})
+	// })
+	//
+	// $("button").eq(41).click(function(){
+	// 	$(".siblings h2").siblings(".siblings h6").css({"border":"2px solid red", "color": "red"})
+	// })
+	//
+	// $("button").eq(42).click(function(){
+	// 	$(".siblings h3").next().css({"border":"2px solid red", "color": "red"})
+	// })
+	//
+	// $("button").eq(43).click(function(){
+	// 	$(".siblings h3").nextAll().css({"border":"2px solid red", "color": "red"})
+	// })
+	//
+	// $("button").eq(44).click(function(){
+	// 	$(".siblings h3").nextUntil(".siblings p").css({"border":"2px solid red", "color": "red"})
+	// })
+	//
+	// $("button").eq(45).click(function(){
+	// 	$(".siblings h3").prev().css({"border":"2px solid red", "color": "red"})
+	// })
+	//
+	// $("button").eq(46).click(function(){
+	// 	$(".siblings h3").prevAll().css({"border":"2px solid red", "color": "red"})
+	// })
+	//
+	// $("button").eq(47).click(function(){
+	// 	$(".siblings h3").prevUntil(".siblings p").css({"border":"2px solid red", "color": "red"})
+	// })
+	//
+	// // Funkcje dotyczące rozdziału: "Zdarzenia"
+	//
+	// $("#kliknijMnie").click(function(){
+	// 	$(this).text("I gdzie te numery ???? Nie ma ??? buahahahah");
+	// })
+	//
+	// $("#podwojnieKliknijMnie").dblclick(function(){
+	// 	$(this).hide();
+	// 	alert("Uppppssss.... czyżby to oznaczało, że nie będzie szczęścia... a może wręcz coś przeciwnego ??? buahahahaha")
+	// })
+	//
+	// $("#najedzMnie").mouseenter(function(){
+	// 	$(this).text("łaskoczeeeeeee !!!!")
+	// })
+	//
+	// $("#zjedzZeMnie").mouseleave(function(){
+	// 	$(this).text("Dziękuję za pomoc")
+	// })
+	//
+	// $("#wcisnijMnie").mousedown(function(){
+	// 	$(this).text("Ehhhhh nie potrzafisz :(")
+	// })
+	//
+	// $("#puscMnie").mouseup(function(){
+	// 	$(this).text("Alllleeeeee ulga, teraz jestem piękny ;)")
+	// })
+	//
+	// $("#wcisnijPuscMnie").hover(function(){
+	// 	$(this).text("w mucholocie")
+	// },
+	// function(){
+	// 	$(this).text("Lata mucha...")
+	// })
+	//
+	// $("#skupSie").focus(function(){
+	// 	$(this).css({"background-color": "black", "color": "white"})
+	// })
+	//
+	// $("#rozluznijSie").blur(function(){
+	// 	$(this).css({"background-color": "white", "color": "black"})
+	// })
+	//
+	// $("#wielokrotneZdarzenia").on({
+	// 	mousedown: function(){
+	// 		$(this).css({"background-color": "red", "color": "white"});
+	// 		$(this).text("BIAŁO-CZERWONI !!!");
+	// 	},
+	// 	mouseup: function(){
+	// 		$(this).css({"background-color": "white", "color": "red"});
+	// 		$(this).text("POLSKA !!!");
+	// 	}
+	// });
 
 })
