@@ -52,7 +52,7 @@ $(function() {
 
 	// Funkcje dotyczące rozdziału: "Manipulowanie elementami HTML DOM"
 
-	// Zwracanie zawartości - Get / Ustawianie zawartości - Set
+	// // Zwracanie zawartości - Get / Ustawianie zawartości - Set
 
 	$("#wezZawartoscButton").click(function(){
 		alert("Zawartość akapitu to: '" + $("#wezZawartoscP").text() + "'" );
@@ -112,7 +112,7 @@ $(function() {
 		});
 	});
 
-	// Dodawanie nowych elementów, zawartości - Add
+	// // Dodawanie nowych elementów, zawartości - Add
 
 	$("#dodajDoMnieButtonEnd").click(function(){
 		$("#dodajDoMniePEnd").append("<b> BIAŁA GWIAZDA !!!</b>");
@@ -189,7 +189,7 @@ $(function() {
 		$("#dodajPrzedPo").after($("<p></p>").text("Czego drzesz ryja Jarku !!!"));
 	});
 
-	// Usuwanie elementów bądź ich zawartości - Remove
+	// // Usuwanie elementów bądź ich zawartości - Remove
 
 	$("#wymazListeMarzeButton").click(function(){
 		$("#wymazListeMarzen").remove();
@@ -212,7 +212,7 @@ $(function() {
 
 	// Manipulowanie stylami CSS
 
-	// dodawania klas
+	// // dodawania klas
 
 	$("#dodajKlase1Button").click(function(){
 		$("#dodajKlase1DIV").addClass("dodajKlase1");
@@ -228,7 +228,7 @@ $(function() {
 		$("#dodajKlase4P").addClass("dodajKlase5 dodajKlase6");
 	});
 
-	// usuwanie klas
+	// // usuwanie klas
 
 	$("#usunKlase1Button").click(function(){
 		$("#usunKlase1DIV").removeClass("usunKlase1");
@@ -242,7 +242,7 @@ $(function() {
 		$("#usunKlase3P").removeClass("usunKlase3 usunKlase4");
 	});
 
-	// włącz / wyłącz klase
+	// // włącz / wyłącz klase
 
 	$("#przelaczKlase1Button").click(function(){
 		$("#przelaczKlase1DIV").toggleClass("przelaczKlase1");
@@ -250,7 +250,7 @@ $(function() {
 		$("#przelaczKlase2DIV p").toggleClass("przelaczKlase3");
 	});
 
-	// ustawianie właściwości CSS
+	// // ustawianie właściwości CSS
 
 	$("#wezWlasciwoscCSSButton").click(function(){
 		alert("Kolor przypisany do właściwości 'color' akapitu to: " + $("#wezWlasciwoscCSS").css("color"));
@@ -269,7 +269,7 @@ $(function() {
 
 	// metody dimensions
 
-	// zwracanie wartości wymiarów
+	// // zwracanie wartości wymiarów
 
 		$("#dimensionReturnWidthHeighButton1").click(function(){
 			var x = $("#dimensionDIV1").width();
@@ -303,12 +303,12 @@ $(function() {
 			$("#dimensionDIV1").html(text);
 		});
 
-		// ustawianie wartości wymiarów
+		// // ustawianie wartości wymiarów
 
 		$("#dimensionReturnWidthHeighButton5").click(function(){
-			var x1 = $("#dimensionDIV2").width(400);
+			$("#dimensionDIV2").width(400);
 			var x = $("#dimensionDIV2").width();
-			var y1 = $("#dimensionDIV2").height(200);
+			$("#dimensionDIV2").height(200);
 			var y = $("#dimensionDIV2").height();
 			var text = "Szerokość elementu wynosi: " + x + "</br>";
 			text += "Wysokość elementu wynosi: " + y;
@@ -316,7 +316,9 @@ $(function() {
 		});
 
 		$("#dimensionReturnWidthHeighButton6").click(function(){
+			$("#dimensionDIV2").innerWidth(400);
 			var x = $("#dimensionDIV2").innerWidth();
+			$("#dimensionDIV2").innerHeight(200);
 			var y = $("#dimensionDIV2").innerHeight();
 			var text = "Szerokość elementu wynosi: " + x + "</br>";
 			text += "Wysokość elementu wynosi: " + y;
@@ -324,7 +326,9 @@ $(function() {
 		});
 
 		$("#dimensionReturnWidthHeighButton7").click(function(){
+			$("#dimensionDIV2").outerWidth(400);
 			var x = $("#dimensionDIV2").outerWidth();
+			$("#dimensionDIV2").outerHeight(200);
 			var y = $("#dimensionDIV2").outerHeight();
 			var text = "Szerokość elementu wynosi: " + x + "</br>";
 			text += "Wysokość elementu wynosi: " + y;
@@ -332,7 +336,9 @@ $(function() {
 		});
 
 		$("#dimensionReturnWidthHeighButton8").click(function(){
+			$("#dimensionDIV2").outerWidth(400);
 			var x = $("#dimensionDIV2").outerWidth(true);
+			$("#dimensionDIV2").outerHeight(200);
 			var y = $("#dimensionDIV2").outerHeight(true);
 			var text = "Szerokość elementu wynosi: " + x + "</br>";
 			text += "Wysokość elementu wynosi: " + y;
@@ -341,127 +347,132 @@ $(function() {
 
 	// Funkcje dotyczące rozdziału: "Węzły i relacje między nimi"
 
-	// Ancestor
+	// // Ancestor
 
-	// $("button").eq(32).click(function(){
-	// 	$("#wezly1").parent().css({"border":"2px solid red", "color": "red"});
-	// });
-	//
-	// $("button").eq(33).click(function(){
-	// 	$("#wezly1").parents().css({"border":"2px solid red", "color": "red"});
-	// });
-	//
-	// $("button").eq(34).click(function(){
-	// 	$("#wezly1").parents("ul").css({"border":"2px solid red", "color": "red"});
-	// });
-	//
-	// $("button").eq(35).click(function(){
-	// 	$("#wezly1").parentsUntil("div").css({"border":"2px solid red", "color": "red"});
-	// });
-	//
+	$("button").eq(54).click(function(){
+		console.log("test");
+		$("#wezly1").parent().css({"border":"2px solid red", "color": "red"});
+	});
+
+	$("button").eq(55).click(function(){
+		$("#wezly1").parents().css({"border":"2px solid red", "color": "red"});
+	});
+
+	$("button").eq(56).click(function(){
+		$("#wezly1").parents("ul").css({"border":"2px solid red", "color": "red"});
+	});
+
+	$("button").eq(57).click(function(){
+		$("#wezly1").parentsUntil("div").css({"border":"2px solid red", "color": "red"});
+	});
+
 	// // Descendant
-	//
-	// $("button").eq(36).click(function(){
-	// 	$(".descendants").children().css({"border":"2px solid red", "color": "red"})
-	// })
-	//
-	// $("button").eq(37).click(function(){
-	// 	$(".descendants").find("span").css({"border":"2px solid red", "color": "red"})
-	// })
-	//
-	// $("button").eq(38).click(function(){
-	// 	$(".descendants").find("*").css({"border":"2px solid red", "color": "red"})
-	// })
-	//
-	// $("button").eq(39).click(function(){
-	// 	$(".descendants").find("p.second").css({"border":"2px solid red", "color": "red"})
-	// })
-	//
+
+	$("button").eq(58).click(function(){
+		$(".descendants").children().css({"border":"2px solid red", "color": "red"})
+	})
+
+	$("button").eq(59).click(function(){
+		$(".descendants").find("span").css({"border":"2px solid red", "color": "red"})
+	})
+
+	$("button").eq(60).click(function(){
+		$(".descendants").find("*").css({"border":"2px solid red", "color": "red"})
+	})
+
+	$("button").eq(61).click(function(){
+		$(".descendants").find("p.second").css({"border":"2px solid red", "color": "red"})
+	})
+
 	// // Siblings
-	//
-	// $("button").eq(40).click(function(){
-	// 	$(".siblings h2").siblings().css({"border":"2px solid red", "color": "red"})
-	// })
-	//
-	// $("button").eq(41).click(function(){
-	// 	$(".siblings h2").siblings(".siblings h6").css({"border":"2px solid red", "color": "red"})
-	// })
-	//
-	// $("button").eq(42).click(function(){
-	// 	$(".siblings h3").next().css({"border":"2px solid red", "color": "red"})
-	// })
-	//
-	// $("button").eq(43).click(function(){
-	// 	$(".siblings h3").nextAll().css({"border":"2px solid red", "color": "red"})
-	// })
-	//
-	// $("button").eq(44).click(function(){
-	// 	$(".siblings h3").nextUntil(".siblings p").css({"border":"2px solid red", "color": "red"})
-	// })
-	//
-	// $("button").eq(45).click(function(){
-	// 	$(".siblings h3").prev().css({"border":"2px solid red", "color": "red"})
-	// })
-	//
-	// $("button").eq(46).click(function(){
-	// 	$(".siblings h3").prevAll().css({"border":"2px solid red", "color": "red"})
-	// })
-	//
-	// $("button").eq(47).click(function(){
-	// 	$(".siblings h3").prevUntil(".siblings p").css({"border":"2px solid red", "color": "red"})
-	// })
-	//
+
+	$("button").eq(62).click(function(){
+		$(".siblings h2").siblings().css({"border":"2px solid red", "color": "red"})
+	})
+
+	$("button").eq(63).click(function(){
+		$(".siblings h2").siblings(".siblings h6").css({"border":"2px solid red", "color": "red"})
+	})
+
+	$("button").eq(64).click(function(){
+		$(".siblings h3").next().css({"border":"2px solid red", "color": "red"})
+	})
+
+	$("button").eq(65).click(function(){
+		$(".siblings h3").nextAll().css({"border":"2px solid red", "color": "red"})
+	})
+
+	$("button").eq(66).click(function(){
+		$(".siblings h3").nextUntil(".siblings p").css({"border":"2px solid red", "color": "red"})
+	})
+
+	$("button").eq(67).click(function(){
+		$(".siblings h3").prev().css({"border":"2px solid red", "color": "red"})
+	})
+
+	$("button").eq(68).click(function(){
+		$(".siblings h3").prevAll().css({"border":"2px solid red", "color": "red"})
+	})
+
+	$("button").eq(69).click(function(){
+		$(".siblings h3").prevUntil(".siblings p").css({"border":"2px solid red", "color": "red"})
+	})
+
 	// // Funkcje dotyczące rozdziału: "Zdarzenia"
-	//
-	// $("#kliknijMnie").click(function(){
-	// 	$(this).text("I gdzie te numery ???? Nie ma ??? buahahahah");
-	// })
-	//
-	// $("#podwojnieKliknijMnie").dblclick(function(){
-	// 	$(this).hide();
-	// 	alert("Uppppssss.... czyżby to oznaczało, że nie będzie szczęścia... a może wręcz coś przeciwnego ??? buahahahaha")
-	// })
-	//
-	// $("#najedzMnie").mouseenter(function(){
-	// 	$(this).text("łaskoczeeeeeee !!!!")
-	// })
-	//
-	// $("#zjedzZeMnie").mouseleave(function(){
-	// 	$(this).text("Dziękuję za pomoc")
-	// })
-	//
-	// $("#wcisnijMnie").mousedown(function(){
-	// 	$(this).text("Ehhhhh nie potrzafisz :(")
-	// })
-	//
-	// $("#puscMnie").mouseup(function(){
-	// 	$(this).text("Alllleeeeee ulga, teraz jestem piękny ;)")
-	// })
-	//
-	// $("#wcisnijPuscMnie").hover(function(){
-	// 	$(this).text("w mucholocie")
-	// },
-	// function(){
-	// 	$(this).text("Lata mucha...")
-	// })
-	//
-	// $("#skupSie").focus(function(){
-	// 	$(this).css({"background-color": "black", "color": "white"})
-	// })
-	//
-	// $("#rozluznijSie").blur(function(){
-	// 	$(this).css({"background-color": "white", "color": "black"})
-	// })
-	//
-	// $("#wielokrotneZdarzenia").on({
-	// 	mousedown: function(){
-	// 		$(this).css({"background-color": "red", "color": "white"});
-	// 		$(this).text("BIAŁO-CZERWONI !!!");
-	// 	},
-	// 	mouseup: function(){
-	// 		$(this).css({"background-color": "white", "color": "red"});
-	// 		$(this).text("POLSKA !!!");
-	// 	}
-	// });
+
+	$("#kliknijMnie").click(function(){
+		$(this).text("I gdzie te numery ???? Nie ma ??? buahahahah");
+	})
+
+	$("#podwojnieKliknijMnie").dblclick(function(){
+		$(this).hide();
+		alert("Uppppssss.... czyżby to oznaczało, że nie będzie szczęścia... a może wręcz coś przeciwnego ??? buahahahaha")
+	})
+
+	$("#najedzMnie").mouseenter(function(){
+		$(this).text("łaskoczeeeeeee !!!!")
+	})
+
+	$("#zjedzZeMnie").mouseleave(function(){
+		$(this).text("Dziękuję za pomoc")
+	})
+
+	$("#wcisnijMnie").mousedown(function(){
+		$(this).text("Ehhhhh nie potrzafisz :(")
+	})
+
+	$("#puscMnie").mouseup(function(){
+		$(this).text("Alllleeeeee ulga, teraz jestem piękny ;)")
+	})
+
+	$("#wcisnijPuscMnie").hover(function(){
+		$(this).text("w mucholocie")
+	},
+	function(){
+		$(this).text("Lata mucha...")
+	})
+
+	$("#skupSie").focus(function(){
+		$(this).css({"background-color": "black", "color": "white"})
+	})
+
+	$("#rozluznijSie").blur(function(){
+		$(this).css({"background-color": "white", "color": "black"})
+	})
+
+	$("#wielokrotneZdarzenia").on({
+		mousedown: function(){
+			$(this).css({"background-color": "red", "color": "white"});
+			$(this).text("BIAŁO-CZERWONI !!!");
+		},
+		mouseup: function(){
+			$(this).css({"background-color": "white", "color": "red"});
+			$(this).text("POLSKA !!!");
+		}
+	});
+
+	// Efekty uzyskiwane za pomocą jQuery
+
+	
 
 })

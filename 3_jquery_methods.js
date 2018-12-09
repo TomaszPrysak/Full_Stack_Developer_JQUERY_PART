@@ -439,11 +439,57 @@ $("#wstawKilkaWlasciwosciCSSButton").click(function(){
 .height() .height(XXX) // metoda ta zwraca wysokość elementu HTMl (WYŁĄCZAJĄC wymiary padding, border i margin)
 // na którym została wywołana bądź ustawia wysokość tego elementu jeżeli w argumencie tej metody poodamy jakąś wartość.
 
+// Na przykład 1:
+$("#dimensionReturnWidthHeighButton1").click(function(){
+	var x = $("#dimensionDIV1").width();
+	var y = $("#dimensionDIV1").height();
+	var text = "Szerokość elementu wynosi: " + x + "</br>";
+	text += "Wysokość elementu wynosi: " + y;
+	$("#dimensionDIV1").html(text);
+}); // Po kliknięciu w przycisk o id="dimensionReturnWidthHeighButton1" na elemencie DIV o id="dimensionDIV1"
+// zostanie umieszczona tekst o jego wymiarach BEZ padding, border i margin.
+
+// Na przykład 2:
+$("#dimensionReturnWidthHeighButton5").click(function(){
+	$("#dimensionDIV2").width(400);
+	var x = $("#dimensionDIV2").width();
+	$("#dimensionDIV2").height(200);
+	var y = $("#dimensionDIV2").height();
+	var text = "Szerokość elementu wynosi: " + x + "</br>";
+	text += "Wysokość elementu wynosi: " + y;
+	$("#dimensionDIV2").html(text);
+}); // Po kliknięciu w przycisk o id="dimensionReturnWidthHeighButton5" szerokość elementu o id="dimensionDIV2"
+// zostanie zwiększona o 400px, a wysokość o 200px. Wymiary zostanę zwiększone NIE UWZGLĘDNIAJĄC padding, border, margin
+// A następnie w nim zostanie umieszczona tekst o jego wymiarach BEZ padding, border i margin.
+
 .innerWidth() .innerWidth(XXX) // metoda ta zwraca szerokość elementu HTMl (WŁĄCZAJĄC padding WYŁĄCZAJĄC border i margin)
 // na którym została wywołana bądź ustawia szerokość tego elementu jeżeli w argumencie tej metody poodamy jakąś wartość.
 
 .innerHeight() .innerHeight(XXX) // metoda ta zwraca wysokość elementu HTMl (WŁĄCZAJĄC padding WYŁĄCZAJĄC border i margin)
 // na którym została wywołana bądź ustawia wysokość tego elementu jeżeli w argumencie tej metody poodamy jakąś wartość.
+
+// Na przykład 1:
+$("#dimensionReturnWidthHeighButton2").click(function(){
+	var x = $("#dimensionDIV1").innerWidth();
+	var y = $("#dimensionDIV1").innerHeight();
+	var text = "Szerokość elementu wynosi: " + x + "</br>";
+	text += "Wysokość elementu wynosi: " + y;
+	$("#dimensionDIV1").html(text);
+}); // Po kliknięciu w przycisk o id="dimensionReturnWidthHeighButton2" na elemencie DIV o id="dimensionDIV1"
+// zostanie umieszczona tekst o jego wymiarach Z padding BEZ border i margin.
+
+// Na przykład 2:
+$("#dimensionReturnWidthHeighButton6").click(function(){
+	$("#dimensionDIV2").innerWidth(400);
+	var x = $("#dimensionDIV2").innerWidth();
+	$("#dimensionDIV2").innerHeight(200);
+	var y = $("#dimensionDIV2").innerHeight();
+	var text = "Szerokość elementu wynosi: " + x + "</br>";
+	text += "Wysokość elementu wynosi: " + y;
+	$("#dimensionDIV2").html(text);
+}); // Po kliknięciu w przycisk o id="dimensionReturnWidthHeighButton6" szerokość elementu o id="dimensionDIV2"
+// zostanie zwiększona o 400px, a wysokość o 200px. Wymiary zostanę zwiększone UwZGLĘDNIAJĄC padding NIE UWZGLĘDNIAJĄC border, margin
+// A następnie w nim zostanie umieszczona tekst o jego wymiarach Z padding BEZ border i margin.
 
 .outerWidth() .outerWidth(XXX) // metoda ta zwraca szerokość elementu HTMl (WŁĄCZAJĄC padding i border WYŁĄCZAJĄC margin)
 // na którym została wywołana bądź ustawia szerokość tego elementu jeżeli w argumencie tej metody poodamy jakąś wartość.
@@ -456,3 +502,49 @@ $("#wstawKilkaWlasciwosciCSSButton").click(function(){
 // Dodatkowo jeżeli zamiast argumentu liczbowego podamy TRUE wówczas metoda ta zwróci wysokość elementu HTML WŁĄCZAJĄC
 // padding, border i margin:
 .outerHeight(true)
+
+// Na przykład 1:
+$("#dimensionReturnWidthHeighButton3").click(function(){
+	var x = $("#dimensionDIV1").outerWidth();
+	var y = $("#dimensionDIV1").outerHeight();
+	var text = "Szerokość elementu wynosi: " + x + "</br>";
+	text += "Wysokość elementu wynosi: " + y;
+	$("#dimensionDIV1").html(text);
+}); // Po kliknięciu w przycisk o id="dimensionReturnWidthHeighButton3" na elemencie DIV o id="dimensionDIV1"
+// zostanie umieszczona tekst o jego wymiarach Z padding, border BEZ margin.
+
+// Na przykład 1.1:
+$("#dimensionReturnWidthHeighButton4").click(function(){
+	var x = $("#dimensionDIV1").outerWidth(true);
+	var y = $("#dimensionDIV1").outerHeight(true);
+	var text = "Szerokość elementu wynosi: " + x + "</br>";
+	text += "Wysokość elementu wynosi: " + y;
+	$("#dimensionDIV1").html(text);
+}); // Po kliknięciu w przycisk o id="dimensionReturnWidthHeighButton4" na elemencie DIV o id="dimensionDIV1"
+// zostanie umieszczona tekst o jego wymiarach Z padding, border, margin.
+
+// Na przykład 2.1:
+$("#dimensionReturnWidthHeighButton7").click(function(){
+	$("#dimensionDIV2").outerWidth(400);
+	var x = $("#dimensionDIV2").outerWidth();
+	$("#dimensionDIV2").outerHeight(200);
+	var y = $("#dimensionDIV2").outerHeight();
+	var text = "Szerokość elementu wynosi: " + x + "</br>";
+	text += "Wysokość elementu wynosi: " + y;
+	$("#dimensionDIV2").html(text);
+}); // Po kliknięciu w przycisk o id="dimensionReturnWidthHeighButton7" szerokość elementu o id="dimensionDIV2"
+// zostanie zwiększona o 400px, a wysokość o 200px. Wymiary zostanę zwiększone UwZGLĘDNIAJĄC padding, border NIE UWZGLĘDNIAJĄC margin
+// A następnie w nim zostanie umieszczona tekst o jego wymiarach Z padding, border BEZ margin.
+
+// Na przykład 2.2:
+$("#dimensionReturnWidthHeighButton8").click(function(){
+	$("#dimensionDIV2").outerWidth(400);
+	var x = $("#dimensionDIV2").outerWidth(true);
+	$("#dimensionDIV2").outerHeight(200);
+	var y = $("#dimensionDIV2").outerHeight(true);
+	var text = "Szerokość elementu wynosi: " + x + "</br>";
+	text += "Wysokość elementu wynosi: " + y;
+	$("#dimensionDIV2").html(text);
+}); // Po kliknięciu w przycisk o id="dimensionReturnWidthHeighButton7" szerokość elementu o id="dimensionDIV2"
+// zostanie zwiększona o 400px, a wysokość o 200px. Wymiary zostanę zwiększone UwZGLĘDNIAJĄC padding, border NIE UWZGLĘDNIAJĄC margin
+// A następnie w nim zostanie umieszczona tekst o jego wymiarach Z padding, border, margin.
