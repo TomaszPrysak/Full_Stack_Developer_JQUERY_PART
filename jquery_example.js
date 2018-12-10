@@ -473,6 +473,64 @@ $(function() {
 
 	// Efekty uzyskiwane za pomocą jQuery
 
-	
+	// .hide() / /show()
+
+	$("#hideShowDIV1 button").click(function(){
+		switch ($(this).attr("id").slice(-1)) {
+			case "1":
+				$("#hideShowDIV1").hide("fast", function(){
+					alert("z prawej do lewej")
+				});
+				break;
+			case "2":
+				$("#hideShowDIV1").fadeOut("slow", function(){
+					alert("zniknięcie")
+				});
+				break;
+			case "3":
+				$("#hideShowDIV1").hide(3000, function(){
+					alert("upssss, czyżbyś dał się nabrać ???")
+				});
+				break;
+		};
+	});
+
+	// .hide() / /show()
+
+	$("#hideShowButton4").click(function(){
+		$("#hideShowDIV1").hide();
+	});
+
+	$("#hideShowButton5").click(function(){
+		$("#hideShowDIV1").show("slow");
+	});
+
+	$("#toggleButton1").click(function(){
+		$("#hideShowDIV1").toggle(1000);
+	});
+
+	$("#toggleButton2").click(function(){
+		$("#hideShowDIV1").toggle(1000, function(){
+			$(this).toggle(1000);
+		});
+	});
+
+	// .fadeOut() / .fadeIn()
+
+	$("#fadeOutButton1").click(function(){
+		$("#hideShowDIV1").fadeOut("fast");
+	});
+
+	$("#fadeInButton1").click(function(){
+		$("#hideShowDIV1").fadeIn(1500);
+	});
+
+	$("#fadeToggleButton1").click(function(){
+		$("#hideShowDIV1").fadeToggle(1000);
+	});
+
+	$("#fadeToButton1").click(function(){
+		$("#hideShowDIV1").fadeTo(1000, 0.5);
+	});
 
 })
