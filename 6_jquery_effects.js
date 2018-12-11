@@ -6,7 +6,8 @@
 // oraz animacji elementów HTML na których zostały wywołane.
 
 ////////////////////////////
-// Metody do odsłaniania elementów HTMl:
+////////////////////////////
+// Metody do wyśwletlania i ukrywania elementów HTMl:
 
 ////////////////////////////
 // Metod do pokazywania i ukrywania elementów poprzez animacje:
@@ -99,8 +100,8 @@ $("#toggleButton2").click(function(){
 .fadeOut() / .fadeIn() // metody bliźniacze do .hide() i .show(). Róznią sie jedynie sposobem
 // animacji ukrywania i wyświetlania elementów.
 // Tak samo jak wprzypadku .hide() i .show() metody .fadeOut() i .fadeIn() można
-// wywołać z argumentami bądź bez. Z tym, że bez argumentu efekt pojawiania się bądź znikania będzie widoczny
-// niż w
+// wywołać z argumentami bądź bez. Z tym, że bez argumentu efekt pojawiania się bądź znikania będzie widoczny.
+// Bo w przypadku metod .hide() i .show() efekt z lewej do prawej bądź odwrotnie będzie niewidoczny.
 // Metoda z argumentami:
 .fadeOut(speed, callback) / .fadeIn(speed, callback)
 // Argumenty działają tak samo jak w przypadku .hide() i .show() więc nie będę opisywać.
@@ -130,4 +131,83 @@ $("#toggleButton2").click(function(){
 $("#fadeToButton1").click(function(){
 	$("#hideShowDIV1").fadeTo(1000, 0.5);
 }); // Po kliknięciu w przycisk o id="fadeToButton1" element HTML o id="hideShowDIV1"
-// zniknie (bądź pojawi, to zależy wczy wcześniej był widoczny czy nie) się do poziomu 50% jego widoczności.
+// zniknie (bądź pojawi, to zależy czy wcześniej był widoczny czy nie) się do poziomu 50% jego widoczności.
+
+////////////////////////////
+// Metod do pokazywania i ukrywania elementów poprzez animacje:
+// - rozwijanie (wyświetlanie elementów)
+// - zwijanie (ukrywanie elementów)
+.slideUp() / .slideDown() // metody bliźniacze do .hide() i .show(). Róznią sie jedynie sposobem
+// animacji ukrywania i wyświetlania elementów.
+// Tak samo jak wprzypadku .hide() i .show() metody .slideUp() i .slideDown() można
+// wywołać z argumentami bądź bez. Z tym, że bez argumentu efekt pojawiania się bądź znikania będzie widoczny.
+// Bo w przypadku metod .hide() i .show() efekt z lewej do prawej bądź odwrotnie będzie niewidoczny.
+.slideUp(speed, callback) / .slideDown(speed, callback)
+// Argumenty działają tak samo jak w przypadku .hide() i .show() więc nie będę opisywać.
+// W szystkie przykłady są bliźniacze do .hide() .show() więc nie ma co opisywać.
+
+////////////////////////////
+////////////////////////////
+// Animowanie elementów
+
+// W jQuery mamy mozliwość tworzenia niestandardowych animacji związanych z
+// manipulowaniem stylami CSS. Animowanie polega na uzyciu poniższej metody:
+.animate({atributeCSS1:"value1", atributeCSS2:"value2",...}, speed, callback)
+// Animowanie polega na tym, że w argumencie powyższej metody w nawiasach klamrowych
+// podajemy właściwość CSS i jej wartość. Wartość ta będzie wartością
+// końcową. Na początku element HTML ma jakąś inną wartość tej właściwości CSS.
+// Czy to wynikającą z wcześniejszego formatowania CSS czy po poprostu nie ma przypisanej żadnej
+// innej wartości danej właściwości czyli 0, none itd.
+// A więc animacja będzie polegać na przejściu z wartości początkowej do wartości
+// jaką podajemy w argumencie tej metody. W związku z tym, że to metoda do animacji
+// to również posiada atrybuty:
+// speed - określa szybkość animacji. I możemy to okreslić za pomocą:
+// 	- milisekund
+//  - słówka "slow"
+//  - słówka "fast"
+// callback - opcjonalny parametr wywołania zwrotnego. Jest to funkcja która ma zostać
+//            wywołana zaraz po zakończeniu wykonywania animacji.
+
+// Na przykład:
+$("#animacjeButton1").click(function(){
+	$("#animacjeP1").animate({fontSize: "25px", color: "blue"});
+}); // Po kliknięciu w przycisk o id="animacjeButton1" akapit o id="animacjeP1"
+// zmieni wielkość swojej czcionki z pierwotnych 5 px do 25 px oraz kolor z czerwonego
+// na niebieski. Przyczym kolor się zmienia bo do kodu HTML w sekcji HEAD został dodany
+// dodatkowy znacznik SCRIPT z odwołaniem sie do skryptu jQuery animująego kolory.
+
+// UWAGA 1 !!!
+// Domyślnie wszystkie elementy HTML mają ustawioną właściwość statyczną (position: static)
+// i nie mogą sie przemieszczać. Aby manipulować ich pozycją i tym samym animować
+// należy najpierw ustawić ich pozycję na wzgledną, stałą lub absoluitną (relative, fixed, or absolute).
+
+// UWAGA 2 !!!
+// W celu animowania róznych właściwości CSS przy pomocy metody .animate() należy pamiętać
+// o tym, aby właściwości CSS które są dwuczłonowe, pisane z kreską, np.: padding-left
+// musza być pisane jako "camel style" w argumencie tej metody, np.: paddingLeft.
+
+// Uwaga 3 !!!
+// Jeżeli chcemy aby animacje dotyczyły również kolorów to musimy dodać sosbny skrypt jQuery który
+// odpowiada tylko za kolory. Ponieważ w podstawowym skrypcie jQuery nie ma zaimplementowanych
+// reguł dotyczących animacji kolorami. W momencie kiedy nie podepniemy osobnego skryptu do kolorów to
+// mimo, że w metodzie umieścimy zmiane koloru to i tak ona nie nastąpi.
+// Sktrypt do kolorów:
+// http://code.jquery.com/color/
+
+// Uwaga 4 !!!
+// Możliwe jest ustawianie wartości właściwości CSS dotyczących wielkości jako przyrostowe
+// względem wartości poczatkowej. Na przykład mamy wielkość elementu DIV ustawionego na:
+// height: 100 px
+// width: 100 px
+// I chcemy, aby jego wielko wzrostał o 200 px w każdym kierunku to w argumentcie metody .animate()
+// przy właściwościach rozmiaru podajemy jako "+=100ox". Wówczas to oznacza, że jego wielkość wzrośnie o
+// 100 px. Po prostu do wcześniej określonej wielkości zostanie dodana wartość którą podajemy w argumencie metody
+// Na przykład:
+$("#animacjeButton2").click(function(){
+	$("#anmateDIV1").animate({
+		height: "+=200px",
+		width: "+=200px",
+	}, "fast");
+}); // Po nacisnięciu przycisku o id="animacjeButton2" wilekość DIVa o id="anmateDIV1"
+// zwiększy sie o 200 px w każdym kierunku. I za kazdym razem jak naciśniemy przycisk to wielkość
+// tego DIVa będzie rosnąć.

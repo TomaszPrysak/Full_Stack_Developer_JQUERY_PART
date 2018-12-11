@@ -172,6 +172,9 @@
 			}
 		</style>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" charset="utf-8"></script>
+		<script src="http://code.jquery.com/color/jquery.color-2.1.2.min.js"
+			integrity="sha256-H28SdxWrZ387Ldn0qogCzFiUDDxfPiNIyJX7BECQkDE="
+  		crossorigin="anonymous"></script>
 		<script src="jquery_example.js" charset="utf-8"></script>
 	</head>
 	<body>
@@ -593,6 +596,8 @@
 
 		<h2>Efekty uzyskiwane za pomocą jQuery</h2>
 
+		<h3>Wyświetlanie i ukrywanie elementów HTML</h3>
+
 		<p>Na poniższym DIVie przedstawimy metody do uzyskiwania efektów ukrywania i wyświetlania elementów</p>
 
 		<div id="hideShowDIV1">
@@ -601,29 +606,48 @@
 				<p>Wygrałeś 4 tysiące jenów !!!</p>
 				<button id="hideShowButton1" type="button">Kliknij po wygraną - .hide("fast", function(){code}) - od prawej do lewej</button>
 				<button id="hideShowButton2" type="button">Kliknij po wygraną - .fadeOut("slow", function(){code}) - zniknięcie</button>
-				<button id="hideShowButton3" type="button">Kliknij po wygraną - .hide(3000, function(){code}) - od prawej do lewej</button>
+				<button id="hideShowButton3" type="button">Kliknij po wygraną - .slideUp(3000, function(){code}) - zwinięcie</button>
 			</div>
 		</div>
 
-		<h3>Ukryj, wyśweitl, włącz/wyłącz - .hide(), .show(), .toggle() - Od lewej do prawej i odwrotnie</h3>
+		<h4>Ukryj, wyśweitl, włącz/wyłącz - .hide(), .show(), .toggle() - od lewej do prawej i odwrotnie</h4>
 
-		<button id="hideShowButton4" type="button">Za pomocą metody <span>.hide()</span> ukryjemy powyżego DIVa</button>
+		<button style="margin-bottom: 10px" id="hideShowButton4" type="button">Za pomocą metody <span>.hide()</span> ukryjemy powyżego DIVa</button>
 		<br>
-		<button id="hideShowButton5" type="button">Za pomocą metody <span>.show("slow")</span> wyświetlimy ukrytego wcześniej DIVa</button>
+		<button style="margin-bottom: 10px" id="hideShowButton5" type="button">Za pomocą metody <span>.show("slow")</span> wyświetlimy ukrytego wcześniej DIVa</button>
 		<br>
-		<button id="toggleButton1" type="button">Za pomocą metody <span>.toggle(1000)</span> możemy wyświetlać i odkrywać powyższego DIVa</button>
+		<button style="margin-bottom: 10px" id="toggleButton1" type="button">Za pomocą metody <span>.toggle(1000)</span> możemy wyświetlać i odkrywać powyższego DIVa</button>
 		<br>
 		<button id="toggleButton2" type="button">Za pomocą metody <span>.toggle(1000, function(){$(this).toggle(1000)})</span> po kliknięciu w przycisk nastąpią dwa po sobie następujące zdarzenia związane z metodą .toggle()</button>
 
-		<h3>Znikanie, pojawianie, włącz/wyłącz - .fadeOut(), .fadeIn(), .fadeToggle(), fadeTo() - przygasanie i rozjaśnianie</h3>
+		<h4>Znikanie, pojawianie, włącz/wyłącz - .fadeOut(), .fadeIn(), .fadeToggle(), fadeTo() - przygasanie i rozjaśnianie</h4>
 
-		<button id="fadeOutButton1" type="button">Za pomocą metody <span>.fadeOut("fast")</span> spowodujemy zniknięcie DIVa</button>
+		<button style="margin-bottom: 10px" id="fadeOutButton1" type="button">Za pomocą metody <span>.fadeOut("fast")</span> spowodujemy zniknięcie DIVa</button>
 		<br>
-		<button id="fadeInButton1" type="button">Za pomocą metody <span>.fadeIn(1500)</span> spowodujemy pojawienie DIVa</button>
+		<button style="margin-bottom: 10px" id="fadeInButton1" type="button">Za pomocą metody <span>.fadeIn(1500)</span> spowodujemy pojawienie DIVa</button>
 		<br>
-		<button id="fadeToggleButton1" type="button">Za pomocą metody <span>.fadeToggle(1000)</span> spowodujemy zniknięcie i pojawienie się DIVa</button>
+		<button style="margin-bottom: 10px" id="fadeToggleButton1" type="button">Za pomocą metody <span>.fadeToggle(1000)</span> spowodujemy zniknięcie i pojawienie się DIVa</button>
 		<br>
 		<button id="fadeToButton1" type="button">Za pomocą metody <span>.fadeTo(1000, 0.5)</span> spowodujemy zniknięcnie bądź pojawienie sie DIVa do momentu 50% jego widoczności</button>
+
+		<h4>Slajd w górę, slajd w dół, włącz/wyłącz - .slideUp(), .slideDown(), .slideToggle() - zwijanie i rozwijanie</h4>
+
+		<button style="margin-bottom: 10px" id="slideUpButton1" type="button">Za pomocą metody <span>.slideUp("slow")</span> spowodujemy zwinięcie DIVa</button>
+		<br>
+		<button style="margin-bottom: 10px" id="slideDownButton1" type="button">Za pomocą metody <span>.slideDown()</span> spowodujemy rozwinięcie DIVa</button>
+		<br>
+		<button id="slideToggleButton1" type="button">Za pomocą metody <span>.slideToggle(2500)</span> spowodujemy zwinięie i rozwinięcie DIVa</button>
+
+		<h3>Animowanie elementów HTML poprzez manipulowanie stylami CSS metodą: .animate()</h3>
+
+		<p id="animacjeP1" style="font-size: 5px; color: red;">Jesteś najlepszy</p>
+		<button id="animacjeButton1" type="button">Za pomocą metody <span>.animate({atributeCSS1:"value1", atributeCSS2:"value2",...})</span> zwiększymy wielkość czcionki i jej kolor w powyższym akapicie</button>
+
+		<p>
+			<div id="anmateDIV1" style="height: 100px; width: 100px; background-color: GreenYellow; position: relative; border: 3px double blue;">
+			</div>
+		</p>
+		<button id="animacjeButton2" type="button">Za pomocą metody <span>.animate({height:"+=200px", width:"+=200px"})</span></button>
 
 	</body>
 </html>

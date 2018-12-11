@@ -473,7 +473,7 @@ $(function() {
 
 	// Efekty uzyskiwane za pomocą jQuery
 
-	// .hide() / /show()
+	// // .hide() / /show()
 
 	$("#hideShowDIV1 button").click(function(){
 		switch ($(this).attr("id").slice(-1)) {
@@ -488,14 +488,14 @@ $(function() {
 				});
 				break;
 			case "3":
-				$("#hideShowDIV1").hide(3000, function(){
-					alert("upssss, czyżbyś dał się nabrać ???")
+				$("#hideShowDIV1").slideUp(3000, function(){
+					alert("zwinięcie")
 				});
 				break;
 		};
 	});
 
-	// .hide() / /show()
+	// // .hide() / /show()
 
 	$("#hideShowButton4").click(function(){
 		$("#hideShowDIV1").hide();
@@ -515,7 +515,7 @@ $(function() {
 		});
 	});
 
-	// .fadeOut() / .fadeIn()
+	// // .fadeOut() / .fadeIn()
 
 	$("#fadeOutButton1").click(function(){
 		$("#hideShowDIV1").fadeOut("fast");
@@ -531,6 +531,37 @@ $(function() {
 
 	$("#fadeToButton1").click(function(){
 		$("#hideShowDIV1").fadeTo(1000, 0.5);
+	});
+
+	// // .slideUp() / .slideDown()
+
+	$("#slideUpButton1").click(function(){
+		$("#hideShowDIV1").slideUp("slow");
+	});
+
+	$("#slideDownButton1").click(function(){
+		$("#hideShowDIV1").slideDown("fast");
+	});
+
+	$("#slideToggleButton1").click(function(){
+		$("#hideShowDIV1").slideToggle(2500);
+	});
+
+	// // .animate()
+
+	$("#animacjeButton1").click(function(){
+		$("#animacjeP1").text("Jesteś nieudacznikiem !!!").animate({fontSize: "25px", color: "blue"});
+	});
+
+	$("#animacjeButton2").click(function(){
+		$("#anmateDIV1").animate({
+			height: "+=200px",
+			width: "+=200px",
+			left: "100px",
+			borderWidth: "10px",
+			borderColor: "black",
+			backgroundColor: "red"
+		}, "fast");
 	});
 
 })
