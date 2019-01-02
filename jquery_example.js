@@ -564,4 +564,62 @@ $(function() {
 		}, "fast");
 	});
 
+	$("#animacjeButton3").click(function(){
+		$("#animacjeP2").animate({
+			height: "hide"
+		});
+	});
+
+	$("#animacjeButton4").click(function(){
+		$("#animacjeP2").animate({
+			height: "show"
+		});
+	});
+
+	$("#animacjeButton5").click(function(){
+		$("#animacjeP2").animate({
+			height: "toggle"
+		});
+	});
+
+	$("#animacjeButton6").click(function(){
+		var divElement = $("#animateDIV2")
+		divElement.animate({backgroundColor: "fuchsia"},1);
+		divElement.animate({width: "250px", opacity: "0.5"},1500);
+		divElement.animate({height: "200px", opacity: "0.5"},1500);
+		divElement.text("GEJ").css("color", "yellow");
+		divElement.animate({fontSize: "5em"}, 3000);
+		divElement.animate({height: "100px", opacity: "1"},1500);
+		divElement.animate({width: "150px", opacity: "1"},1500);
+	});
+
+	$("#stopAnimacjiButton1").click(function(){
+		$("#animateDIV2").stop(true);
+	});
+
+	$("#stopAnimacjiButton2").click(function(){
+		$("#animateDIV2").stop(true, true);
+	});
+
+	// // .filter()
+
+	$("#filterButton1").click(function(){
+		$("#filterLI li").filter("#filterID").css("backgroundColor", "yellow");
+	});
+
+	$("#filterButton2").click(function(){
+		$("#filterLI li").filter("#filterID, .filterKlasa").css("backgroundColor", "yellow");
+	});
+
+	$("#filterButton3").click(function(index){
+		$("#filterLI li").filter(function(){return $(this).text() == "drugi" && $(this).attr("class") == "filterKlasa" }).css("backgroundColor", "yellow");
+	});
+
+	$("#ciekaweFiltrowanieInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#ciekaweFiltrowanieDiv *").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+
 })

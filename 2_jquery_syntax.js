@@ -12,7 +12,7 @@ $("elementHTMLwedługodwołaniaCSS").akcja()
 // $ - znak dolara umieszczony w składni jQuery oznacza, że definiujemy zapytanie do
 // biblioteki jQuery, a inaczej mówiąc, że chcemy połączyć się z tą biblioteką,
 // ("elementHTMLwedługodwołaniaCSS") - jest to dostanie się / odwołanie się do elementu HTML,
-// korzystamy tutaj z odwołań jakie stosujemy w plikach CSS.+
+// korzystamy tutaj z odwołań jakie stosujemy w plikach CSS.
 // akcja() - wykonujemy akcję na elemencie / elementach do których się odwołujemy
 // w zapytaniu.
 

@@ -211,3 +211,178 @@ $("#animacjeButton2").click(function(){
 }); // Po nacisnięciu przycisku o id="animacjeButton2" wilekość DIVa o id="anmateDIV1"
 // zwiększy sie o 200 px w każdym kierunku. I za kazdym razem jak naciśniemy przycisk to wielkość
 // tego DIVa będzie rosnąć.
+
+
+// Uwaga 5 !!!
+// Metoda .animate() umożliwia również dodanie do elementu HTML animacje o których
+// wcześniej się uczyliśmy jako o osobnych metodach pozwalających na pokazywanie i ukrywanie
+// elementów HTML. W tej metodzie do animacji pokazywania i ukrywnia jak i przełączania używamy
+// właściwości, atrybutu CSS hight do której przypisujemy wartości: show - pokaż, hide - ukryj, toggle - włącz/wyłącz.
+// Jednak działanie tych animacji jest inne niż działanie metod o tych samych nazwach
+// wywołanych na elemencie HTML. Na temat tych metod uczyliśmy się wcześniej.
+// Przykłady:
+$("#animacjeButton3").click(function(){
+	$("#animacjeP2").animate({
+		height: "hide"
+	});
+}); // Po kliknięciu w przycisk o id="animacjeButton3" akapit o id="animacjeP2"
+// zostanie ukryty
+
+$("#animacjeButton4").click(function(){
+	$("#animacjeP2").animate({
+		height: "show"
+	});
+}); // Po kliknięciu w przycisk o id="animacjeButton4" akapit o id="animacjeP2"
+// zostanie wyświetlony, jeżeli wcześniej został ukryty
+
+$("#animacjeButton5").click(function(){
+	$("#animacjeP2").animate({
+		height: "toggle"
+	});
+}); // Po kliknięciu w przycisk o id="animacjeButton5" akapit o id="animacjeP2"
+// zostanie wyświetlony lub ukryty. W zależności od jego stanu wcześniejszego
+
+////////////////////////////
+// Kolejkowanie animacji
+
+// Domyślnie jQuery stosuje kolejkowanie animacji.
+// Oznacza to, że jeżeli wywołamy po sobie kilka animacji na jednym obiekcie
+// to następna animacja nie zacznie się dopóki nie skończy się poprzednia.
+// To samo dotyczy wywołania jednej animacji na jednym obiekcie i drugiej animacji
+// na drugim obiekcie. Jedna animacja musi się skończyć aby mogła zacząć się kolejna.
+// Na przykład:
+$("#animacjeButton6").click(function(){
+	var divElement = $("#animateDIV2")
+	divElement.animate({backgroundColor: "fuchsia"},1);
+	divElement.animate({width: "250px", opacity: "0.5"},1500);
+	divElement.animate({height: "200px", opacity: "0.5"},1500);
+	divElement.text("GEJ").css("color", "yellow");
+	divElement.animate({fontSize: "5em"}, 3000);
+	divElement.animate({height: "100px", opacity: "1"},1500);
+	divElement.animate({width: "150px", opacity: "1"},1500);
+}); // Po kliknięciu w przycisk o id="animacjeButton6" najpier zostanie wykonana metoda:
+divElement.text("GEJ").css("color", "yellow");
+// Następnie zostaną uruchomione na elemencie o id="animateDIV2" animacje jedna po drugiej.
+// To znaczy, że jak jedna się skończy to zacznie się druga w kolejności.
+// Animacje nie mogą się wykonywać jednocześnie.
+// Napierw zostanie zwiększona szerokość, potem wysokość, następnie zostanie zwiększona wielkość tekstu
+// potem zostanie zmniejszona wysokość , a na koniec zmniejszona szerokość.
+
+////////////////////////////
+// Zatrzymanie trwającej animacji
+
+// W jQuery mamy możliwość zatrzymania trwającej animacji. Słuzy do tego metoda .stop()
+// Polecenie to przyjmuje dwa opcjonalne parametry:
+.stop(stopAll,goToEnd);
+// stopAll - określa on czy kolejka animacji powinna być wyczyszczona.
+//           FALSE oznacza, że tylko aktywna animacja zostanie zatrzymana
+//           umozliwiając późniejsze wykonanie animacji w kolejce.
+//           TRUE oznacza, że aktualna animacja zostanie zatrzymana i żadna kolejna
+//           animacja nie zostanie uruchomiona
+// goToEnd - okresla on czy natychmiast zakończyć aktualną animację, wyświetlic jej efekt końcowy
+//           i wyczyścic kolejkę animacji.
+//           FALSE oznacza, że aktualna animacja zostanie wstrzymana i kolejka animacji wyczyszczona
+//           TRUE oznacza, że aktualna animacja zostanie zakończona z natychmiastowym wyświetleniem
+//           jej wyniku oraz kolejka animacji zostanie wyczyszczona.
+// Na przykład:
+$("#stopAnimacjiButton2").click(function(){
+	$("#animateDIV2").stop(true, true);
+}); // Po kliknięciu w przycisk o id="stopAnimacjiButton2" element o id="animateDIV2"
+// na którym wykonywana jest animacja zostanie to aktualna animacja zakończona z natychmiastowym
+// wyświetleniem jej efektu oraz wyczyszczona zostanie kolejka animacji.
+
+////////////////////////////
+// Funkcja zwrotna
+
+// Kod JavaScript wykonywany jest wiersz po wierszu. Jendak w przypadku efektów
+// kolejna linijka kodu może zostać uruchomiona nawet jeśli efekt nie został zakończony.
+// Może to generować błędy. W celu przeciwdziałania temu możemy zastosować funkcję zwrotną
+// która się wykona w momencie kiedy efekt się skończy. A więc zabezpieczamy się bo
+// kolejny efekt czeka, aż wykona sie funkcja zwrotna. A jak ona się wykona to jesteśmy pewni,
+// że i wykonał się też poprzedni efekt.
+
+////////////////////////////
+// Łańcuch zdareń
+
+// W jQuery możemy łączyć ze sobą kilka metod i akcji wykonywanych w ramach jednej instrukcji.
+// Jest to technika zwana łańcuchem, który pozwala nam uruchamiać wiele poleceń jQuery, jeden po drugim
+// na tym samym elemencie HTML (elementach).
+
+// TIP !!!
+// Dzięki temu przeglądarki nie musza znajdować tego samego elementu wiele razy.
+
+// Aby połączyć akcję, wystarczy dopisac do poprzedniej akcji kolejną po kropce.
+
+// Na przykład:
+$("#animacjeButton1").click(function(){
+	$("#animacjeP1").text("Jesteś nieudacznikiem !!!").animate({fontSize: "25px", color: "blue"});
+}); // Po kliknięciu w przycisk o id="animacjeButton1" za pomocą łańcucha zdarzeń
+// najpierw zostanie wykonana zmiana zawrtości akapitu text() o id="animacjeP1"
+// a następnie jego animacja .animate({}). I właśnie to wywołanie kilku metod, akcji po kolei
+// na jednym elemencie HTML jest łańcuchem zdarzeń.
+
+////////////////////////////
+// Filtrowanie elementów HTML
+
+// W jQuery wystepuje metoda do filtrowania elemetów HTML, a inaczej mówiąc do
+// zawężania wyników wyszukiwania spośród grupy elementów. Słuzy do tego metoda:
+.filter(criteria, function(index))
+// W metodzie tej określamy kryteria dzięki którym jesteśmy w stanie odsiać elementy HTML
+// które nie pasują do tych kryteriów.
+// Najpierw jednak metodę tę wywołujemy już na jakiejś grupie elementów.
+// Metoda ta zwraca elementy które pasują do kryteriów podanych w składni metody.
+// Jednak składnia metody pozwala nam na określeniej w dwojaki sposób kryteriów
+// wyszukiwania elementów:
+
+// 1. Metoda:
+.filter("elementHTMLwedługodwołaniaCSS1,elementHTMLwedługodwołaniaCSS2") // w pierwszej metodzie do określenia
+// kryteriów wyszukiwania spośród grupy elementów podajemy odowłania jakie stosujemy
+// w plikach CSS. Po prostu podajemy "#" albo "." w zależności do tego czy odwołujemy się
+// do elementu o konkretnym ID bądź o konkretnej CLASS. Oczywiście tych odwołań jest o wiele więcej.
+// Na stronach w3school.com znajdziemy wiele kobinacji selektorów CSS.
+// Jeżeli chcemy użyć kilku odwołań CSS podajemy je po prostu po przecinku.
+
+// Na przykład 1:
+$("#filterButton1").click(function(){
+	$("#filterLI li").filter("#filterID").css("backgroundColor", "yellow");
+}); // Po kliknieciu w przycisk o id="filterButton1" najpierw odwołujemy się do grupy podpunktów "LI"
+// należących do elementu o id="filter1". Następnie za pomocą metody .filter() spośród tych
+// elementów "LI" wcześniej wyselekcjonowanych odwołujemy się do elementu zawierającego
+// id="filterID". Po prostu metoda ta zwraca nam tylko ten jeden element.
+// A następnie za pomocą metody .css() nadajemy mu formatowanie.
+// Na przykład 2:
+$("#filterButton2").click(function(){
+	$("#filterLI li").filter("#filterID, .filterKlasa").css("backgroundColor", "yellow");
+}); // Przykład drugi jest bardzo podobny do przykładu pierwszego.
+// Jednak w przykładzie drugim żyliśmy dwóch odwołań CSS jedno po drugim po przecinku.
+
+// 2. Metoda:
+.filter(function(index){return $(this).text() == "teskt" && $(this).attr("id") == "id" })
+// w drugiej metodzie, wykorzystującej funckcję, interujemy po grupie wszystkich elementów HTML
+// na których metoda ta została wywołana i na każdym elemencie z osobna uruchamiamy funkcję zapisaną wewnątrz metody.
+// Jeżeli funkcja ta zwróci wartość TRUE wówczas element na którym została wywołana zostaje zachowany do grupy elementów
+// odfiltrowanych.
+// Index - oznacza pozycję elementu w zestawie.
+
+// Na przykład:
+$("#filterButton3").click(function(){
+	$("#filterLI li").filter(function(){return $(this).text() == "drugi" && $(this).attr("class") == "filterKlasa" }).css("backgroundColor", "yellow");
+}); // Po kliknieciu w przycisk o id="filterButton3" najpierw odwołujemy się do grupy podpunktów "LI"
+// należących do elementu o id="filter1". Następnie za pomocą metody .filter() wykorzystując funkcję
+// iterujemy po tych elementach. W iterowania sprawdzamy za pomocą tej funkcji czy aktualnie iterowany
+// element zawiera tekst równy "drugi" oraz czy atrybut class tego elementu zawiera wartość "filterKlasa".
+// W momencie kiedy dla iterowanego elementu powyższe warunki się zgadzają to element ten jest zwracany i następnie
+// za pomocą metody .css() nadajemy mu formatowanie.
+
+
+// Ciekawe wykorzystania filtrowania elementów:
+$("#ciekaweFiltrowanieInput").on("keyup", function() {
+	var value = $(this).val().toLowerCase();
+	$("#ciekaweFiltrowanieDiv *").filter(function() {
+		$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+	});
+}); // Używamy jQuery do przechodzenia przez kolejne wszystkie (*) elementy HTML DIVa (#ciekaweFiltrowanieDiv),
+// aby sprawdzić czy elementy HTML zawierają wartości tekstowe pasujące do wartości pola tekstowego do którego
+// wpisujemy sprawdzaną frazę. Metoda .toggle() ukrywa elementy (display:none) które nie pasują do wyszukiwania.
+// Metoda .toLowerCase() służy do konwersji tekstu na małe litery co powoduje, że wyszukiwanie nie jest wrażliwie
+// na wpisanie dużych liter.

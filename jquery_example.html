@@ -170,6 +170,18 @@
 				font-size: 25px;
 				font-style: oblique;
 			}
+			#animateDIV2{
+				height: 100px;
+				width: 150px;
+				background-color: CornflowerBlue;
+				position: relative;
+				text-align: center;
+			}
+			#ciekaweFiltrowanieDiv{
+				width: 250px;
+				padding-left: 5px;
+				border: 2px solid black;
+			}
 		</style>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" charset="utf-8"></script>
 		<script src="http://code.jquery.com/color/jquery.color-2.1.2.min.js"
@@ -648,6 +660,53 @@
 			</div>
 		</p>
 		<button id="animacjeButton2" type="button">Za pomocą metody <span>.animate({height:"+=200px", width:"+=200px"})</span></button>
+
+		<p id="animacjeP2">Jesteś fajny</p>
+		<button id="animacjeButton3" type="button">Za pomocą metody <span>.animate({height:"hide"})</span> ukryjemy powyższy akapit</button>
+		<br>
+		<button id="animacjeButton4" type="button">Za pomocą metody <span>.animate({height:"show"})</span> wyświetlimy wcześniej ukryty akapit</button>
+		<br>
+		<button id="animacjeButton5" type="button">Za pomocą metody <span>.animate({height:"taggle"})</span> będziemy przełączać się między pokazywaniem i ukrywaniem powyższego akapitu (włącz/wyłącz)</button>
+
+		<p>
+			<div id="animateDIV2">
+				maczo
+			</div>
+		</p>
+		<button id="animacjeButton6" type="button">Na powyższym <span>DIV</span> przedstawimy kolejkowanie animacji</button>
+		<br>
+		<button id="stopAnimacjiButton1" type="button">Za pomocą metody <span>.stop(true)</span> wywałonej na powyższym <span>DIV</span> spowodujemy natychmiastowe zatrzymanie animacji i czyścimy kolejkę animacji</button>
+		<br>
+		<button id="stopAnimacjiButton2" type="button">Za pomocą metody <span>.stop(true, true)</span> wywałonej na powyższym <span>DIV</span> spowodujemy natychmiastowe zatrzymanie animacji wraz z wywołaniem aktualnej animacji</button>
+
+		<h3>Filtrowanie, szukanie elementów</h3>
+
+		<ul id="filterLI">Lista na której ćwiczymy filtrowanie elementów:
+			<li id="filterID">pierwszy</li>
+			<li class="filterKlasa">drugi</li>
+			<li class="filterKlasa">trzeci</li>
+		</ul>
+		<button id="filterButton1" type="button">Za pomocą metody <span>.filter("#filterID")</span> odfiltrujemy element o ID = <span>filterID</span> spośród grupy elementów na którym metoda ta została wywoana</button>
+		<br>
+		<button id="filterButton2" type="button">Za pomocą metody <span>.filter("#filterID, .filter")</span> odfiltrujemy element o ID = <span>filterID</span> oraz elementy o CLASS = <span>filterKlasa</span> spośród grupy elementów na którym metoda ta została wywoana</button>
+		<br>
+		<button id="filterButton3" type="button">Za pomocą <span>.filter(function(index){return $(this).text() == "drugi"})</span> odfiltrujemy element którego wartość węzła tekstowego to <span>drugi</span></button>
+
+		<h4>Ciekawny przykład na filtrowanie elementów</h4>
+
+		<p>W poniższym DIVie znajdują się różne elementy HTML. Wykorzystując metodę <span>.filter()</span> będziemy przeszukiwać i pokazywać tylko te elementy które zawierają odpowiednią frazę.
+			<br>Frazę tę będziemy wpisywać w pole tekstowe poniżej DIVa. Z każdym kolejnym wpisaniem litery elementy na bieżąco będą się ukrywać.
+			<br>Widoczne będą tylko te które będą zaiwerać aktualnie wpisaną frazę do pola tekstowego.
+		</p>
+		<div id="ciekaweFiltrowanieDiv">
+			<p>I am a paragraph.</p>
+  		<div>I am a div element inside div.</div>
+  		<button>I am a button</button>
+  		<button>Another button</button>
+  		<p>Another paragraph.</p>
+		</div>
+		<br>
+		<input id="ciekaweFiltrowanieInput" type="text" placeholder="Wyszukaj...">
 
 	</body>
 </html>
