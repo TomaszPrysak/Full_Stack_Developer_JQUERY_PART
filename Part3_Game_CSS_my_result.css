@@ -1,0 +1,26 @@
+.menuBox{
+	background-color: lightblue;
+}
+
+.fieldBox{
+	background-color: khaki;
+}
+
+li{
+	font-size: 20px;
+}
+
+table button{
+	height: 100px;
+  width: 100px;
+  text-align: center;
+	border: 4px solid black;
+	font-size: 90px;
+	border-radius: 50%;
+	background-color: khaki;
+}
+
+a, a:hover{
+	color: white;
+	text-decoration: none;
+}

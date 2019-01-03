@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Connect 4</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link rel="stylesheet" href="Part3_Game_CSS_my_result.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" charset="utf-8"></script>
+		<script src="http://code.jquery.com/color/jquery.color-2.1.2.min.js"
+			integrity="sha256-H28SdxWrZ387Ldn0qogCzFiUDDxfPiNIyJX7BECQkDE="
+  		crossorigin="anonymous"></script>
+		<script src="jquery_example.js" charset="utf-8"></script>
+	</head>
+	<body>
+		<!-- Kontener wstępu -->
+		<div class="container">
+			<div class="jumbotron mt-4">
+				<h2 class="font-weight-light text-center">Ultra nowoczesna gra typu Connect 4 !</h1>
+				<p class="font-weight-light text-justify">Przed Tobą niepowtarzalna okazja, aby raz na zawsze zmienić swoje życie. A wszystko to za sprawą
+				poniższej najnowoczesniejszej wersji gry typu Connect 4 ! Zagrasz raz i nigdy nie będziesz chciał skończyc. Przygotuj zatem kratę browarów i paluszki ;)
+				Zapewne zasadny znasz, a więc nie zwlekaj i przystąp do gry !</p>
+			</div>
+		</div>
+		<!-- Kontener menu -->
+		<div id="menu" class="container">
+			<div class="menuBox jumbotron">
+				<h2 class="text-center">Menu</h2>
+				<!-- Kontener single-player -->
+				<div  id="singleBox" class="mt-2 p-2 border border-primary">
+					<!-- Button single-player -->
+					<button id="single" class="btn btn-block btn-primary mt-4 mb-4" type="button" name="button">Single-player</button>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-row justify-content-center">
+								<div class="col-auto">
+									<div class="input-group mb-4">
+										<div class="input-group-prepend">
+											<span class="input-group-text" id="inputGroup-sizing-default">Player</span>
+										</div>
+										<!-- Input Playere -->
+										<input disabled id="inputSingle" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" value="Player">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Kontener multi-player -->
+				<div id="multiBox" class="mt-2 p-2 border border-info">
+					<!-- Button Multi-player -->
+					<button id="multi" class="btn btn-block btn-info mt-4 mb-4" type="button" name="button">Multi-player</button>
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="form-row justify-content-center">
+								<div class="col-auto">
+									<div class="input-group mb-4">
+									  <div class="input-group-prepend">
+									    <span class="input-group-text" id="inputGroup-sizing-default">Player One (<span style="color:blue;font-weight:bold;">BLUE</span>)</span>
+									  </div>
+										<!-- Input Player One -->
+									  <input disabled id="inputMulti1" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" value="Player One">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-row justify-content-center">
+								<div class="col-auto">
+									<div class="input-group mb-4">
+									  <div class="input-group-prepend">
+									    <span class="kolor input-group-text" id="inputGroup-sizing-default">Player Two (<span style="color:red;font-weight:bold;">RED</span>)</span>
+									  </div>
+										<!-- Input Player Two -->
+									  <input disabled id="inputMulti2" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" value="Player Two">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Button Play -->
+				<a href="#game"><button disabled id="play" class="btn btn-block btn-success mt-4" type="button" name="button">PLAY</button></a>
+			</div>
+		</div>
+		<!-- Kontener planszy -->
+		<div id="game" class="container">
+			<div class="fieldBox jumbotron">
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-row justify-content-center">
+							<div class="">
+								<ul class="list-inline">
+								  <li id="firstPlayer" class="list-inline-item font-weight-bold">First player</li>
+								  <li class="list-inline-item font-italic">VS.</li>
+								  <li id="secondPlayer" class="list-inline-item font-weight-bold">Second Player</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<table align="center">
+				  <tbody>
+				    <tr>
+				      <td><button type="button" name="button"></button></td>
+				      <td><button type="button" name="button"></button></td>
+				      <td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+				    </tr>
+				    <tr>
+							<td><button type="button" name="button"></button></td>
+				      <td><button type="button" name="button"></button></td>
+				      <td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+				    </tr>
+				    <tr>
+							<td><button type="button" name="button"></button></td>
+				      <td><button type="button" name="button"></button></td>
+				      <td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+				    </tr>
+						<tr>
+							<td><button type="button" name="button"></button></td>
+				      <td><button type="button" name="button"></button></td>
+				      <td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+				    </tr>
+						<tr>
+							<td><button type="button" name="button"></button></td>
+				      <td><button type="button" name="button"></button></td>
+				      <td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+				    </tr>
+						<tr>
+							<td><button type="button" name="button"></button></td>
+				      <td><button type="button" name="button"></button></td>
+				      <td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+							<td><button type="button" name="button"></button></td>
+				    </tr>
+				  </tbody>
+				</table>
+				<!-- Button Reset -->
+				<button id="reset" disabled class="btn btn-block btn-danger mt-4" type="button" name="button">RESET</button>
+				<!-- Button New Game -->
+				<a href="#menu"><button id="newGame" disabled class="btn btn-block btn-success mt-4" type="button" name="button">NEW GAME</button></a>
+			</div>
+		</div>
+		<script src="Part3_Game_JS_my_result.js" charset="utf-8"></script>
+	</body>
+</html>

@@ -168,3 +168,20 @@ $("#wielokrotneZdarzenia").on({
 }); // do elementu o id="wielokrotneZdarzenia" przypiente zostały dwa zdarzenia,
 // jedno wywoływane poprzez wciśnięcie klawisza myszki na elemencie, a drugie
 // podczas puszczania tego klawisza z elementu.
+
+// UWAGA !!!
+// Przydatną funkcjonalnością podczas metod dodających reakcje na zdarzenia jest możliwość
+// przekazywania w funkcjach parametru "event".
+// Pod parametrem tym kryje się obiekt zawierający informacje na temat zdarzenia.
+// Możemy się dowiedzieć (na przykład) jakim klawiszem klawiatury nastąpiło zdarzenie
+// i ta informacja może nam posłużyć do przysiania do określonego klawisza jakiejś konkretnej reakcji.
+// Na przykład:
+$("input").eq(0).keypress(function(event){
+  console.log(event);
+  if (event.which === 13) {
+    $("h3").toggleClass("turnBlue");
+  }
+}); // Do elementu HTML typu INPUT przypisano zdarzenie reagujące na naciśnięcie klawisza klawaitury.
+// W momencie naciskania jakiegokolwiek klawisza w tym elemencie INPUT, w konsoli przeglądarki wyświetla się log z informacją
+// dotyczącą nciskanego klawisza. Dodatkowo wprowadzono wyrażenie warunkowe kóre wykona się jeżeli
+// naciskanym klawiszem na klawiaturze będzie ten który określan numer 13. A jest to klawisz ENTER.

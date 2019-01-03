@@ -19,7 +19,7 @@ $("li").click(function(){
 // });
 
 $("input").eq(0).keypress(function(event){
-  // console.log(event);
+  console.log(event);
   if (event.which === 13) {
     $("h3").toggleClass("turnBlue");
   }
