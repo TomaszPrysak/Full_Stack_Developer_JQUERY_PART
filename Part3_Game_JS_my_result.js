@@ -20,19 +20,19 @@ var numPlayers;
 var moveCounter = 1;
 
 function singlePlayer(){
-	alert("Opcja w trakcie rozwoju");
-	// if (multiInput[0].disabled == false) {
-	// 	alert('Wybrano rodzaj rozgrywki Multi-player')
-	// }else{
-	//  numPlayers = 1;
-	// 	singleInput.disabled = false;
-	// 	playButton.prop('disabled', false);
-	// 	playButton.on({click: prepareGame});
-	// }
+	// alert("Opcja w trakcie rozwoju");
+	if (multiInput.eq(0).prop("disabled") == false) {
+		alert('Wybrano rodzaj rozgrywki Multi-player')
+	}else{
+		numPlayers = 1;
+		singleInput.prop("disabled",false);
+		playButton.prop('disabled', false);
+		playButton.on({click: prepareGame});
+	}
 }
 
 function multiPlayer(){
-	if (singleInput.attr("disabled") == false) {
+	if (singleInput.prop("disabled") == false) {
 		alert('Wybrano rodzaj rozgrywki Single-player')
 	} else {
 		numPlayers = 2;
@@ -51,8 +51,8 @@ function prepareGame(){
 	resetButton.on({click: wyczysc});
 	newGameButton.on({click: nowaGra});
 	if (numPlayers == 1) {
-		document.querySelector("#firstPlayer").textContent = multiInput[0].value;
-		document.querySelector("#secondPlayer").textContent = "Computer";
+		$("#firstPlayer").html(singleInput.eq(0).val() + " (<span style='color:blue;font-weight:bold;'>BLUE</span>)");
+		$("#secondPlayer").html("Computer (<span style='color:red;font-weight:bold;'>RED</span>)");
 	} else {
 		$("#firstPlayer").html(multiInput.eq(0).val() + " (<span style='color:blue;font-weight:bold;'>BLUE</span>)");
 		$("#secondPlayer").html(multiInput.eq(1).val() + " (<span style='color:red;font-weight:bold;'>RED</span>)");
@@ -79,16 +79,6 @@ function putMark(){
 						wyczysc();
 					}
 				}
-			// 	}
-			// setTimeout(function(){showWin()}, 3000);
-			// function showWin(x){
-			// 	if (moveCounter > 5) {
-			// 		if (checkWinner(this.innerHTML, this.id) == this.innerHTML) {
-			// 			alert("wygrana " + this.innerHTML);
-			// 			wyczysc();
-			// 		}
-			// 	}
-			// }
 		} else {
 			alert("Nie możesz tutaj postawić znaku");
 		}
