@@ -10,14 +10,15 @@ li{
 	font-size: 20px;
 }
 
-table button{
+table div{
 	height: 100px;
   width: 100px;
   text-align: center;
 	border: 4px solid black;
 	font-size: 90px;
 	border-radius: 50%;
-	/* background-color: khaki; */
+	opacity: 0.3;
+	background-color: Gainsboro;
 }
 
 a, a:hover{

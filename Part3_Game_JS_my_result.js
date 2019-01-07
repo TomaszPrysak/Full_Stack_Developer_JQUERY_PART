@@ -7,8 +7,9 @@ var playButton = 	$("#play");
 var resetButton = $("#reset");
 var resetButton = $("#reset");
 var newGameButton = $("#newGame");
-var squares = $("td");
+var squares = $("td div");
 var numPlayers;
+var moveCounter = 1;
 
 // Prosty sposób w JavaScript na sprawdzenie czy wartośc znajduje się w tabeli:
 // if (row3.indexOf(7) == "-1") {
@@ -17,18 +18,22 @@ var numPlayers;
 // 	console.log(row1.indexOf(1));
 // }
 
-var moveCounter = 1;
+
 
 function singlePlayer(){
-	// alert("Opcja w trakcie rozwoju");
+	alert("Opcja w trakcie rozwoju");
 	if (multiInput.eq(0).prop("disabled") == false) {
 		alert('Wybrano rodzaj rozgrywki Multi-player')
-	}else{
-		numPlayers = 1;
-		singleInput.prop("disabled",false);
-		playButton.prop('disabled', false);
-		playButton.on({click: prepareGame});
 	}
+	// if (multiInput.eq(0).prop("disabled") == false) {
+	// 	alert('Wybrano rodzaj rozgrywki Multi-player')
+	// }else{
+	// 	numPlayers = 1;
+	// 	singleInput.prop("disabled",false);
+	// 	playButton.prop('disabled', false);
+	// 	playButton.on({click: prepareGame});
+	// 	 alert("Opcja w trakcie rozwoju\nBrak możliwości rozgrywki\nOdśwież stronę");
+	// }
 }
 
 function multiPlayer(){
@@ -36,9 +41,7 @@ function multiPlayer(){
 		alert('Wybrano rodzaj rozgrywki Single-player')
 	} else {
 		numPlayers = 2;
-		for (var i = 0; i < multiInput.length; i++) {
-			multiInput.eq(i).prop('disabled', false);
-		}
+		multiInput.prop('disabled', false);
 		playButton.prop('disabled', false);
 		playButton.on({click: prepareGame});
 	}
@@ -57,51 +60,21 @@ function prepareGame(){
 		$("#firstPlayer").html(multiInput.eq(0).val() + " (<span style='color:blue;font-weight:bold;'>BLUE</span>)");
 		$("#secondPlayer").html(multiInput.eq(1).val() + " (<span style='color:red;font-weight:bold;'>RED</span>)");
 	}
-	for (var i = 0; i < squares.length; i++) {
-		squares[i].addEventListener("click", putMark);
-	}
+	squares.css("opacity", "1");
+	squares.on({click: putMark});
 }
 
 function putMark(){
 	if (numPlayers == 1) {
-		alert("Opcja single-player nie jest jeszcze rozwinięta");
+		alert("Opcja w trakcie rozwoju");
 	} else {
-		if (this.innerHTML == "") {
+		if ($(this).css("background-color") == "rgb(220, 220, 220)") {
 			if ((moveCounter % 2) != 0) {
-				this.innerHTML = "X"
+				$(this).css("background-color","blue");
 			} else {
-				this.innerHTML = "O"
+				$(this).css("background-color","red");
 			}
-			moveCounter += 1
-			if (moveCounter > 5) {
-					if (checkWinner(this.innerHTML, this.id) == this.innerHTML) {
-						alert("wygrana " + this.innerHTML + "\nPo kliknięciu OK rozpocznie się nowa runda\nAby zagrać nowymi postaciami wybierz NEW GAME");
-						wyczysc();
-					}
-				}
-		} else {
-			alert("Nie możesz tutaj postawić znaku");
-		}
-	}
-	if (moveCounter == 10) {
-		alert("Remis\nPo kliknięciu OK rozpocznie się nowa runda\nAby zagrać nowymi postaciami wybierz NEW GAME");
-		wyczysc();
-	}
-}
-
-function checkWinner(mark, id){
-	var intID = parseInt(id)
-	for (variable1 of rowColArray) {
-		if (variable1.indexOf(intID) != "-1") {
-			var markCounter = 0;
-			for (variable2 of variable1) {
-				if (document.getElementById(variable2).innerHTML == mark) {
-					markCounter += 1;
-				}
-				if (markCounter == 3) {
-					return mark;
-				}
-			}
+			moveCounter += 1;
 		}
 	}
 }
