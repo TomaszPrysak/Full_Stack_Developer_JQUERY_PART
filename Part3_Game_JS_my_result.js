@@ -68,14 +68,44 @@ function putMark(){
 	if (numPlayers == 1) {
 		alert("Opcja w trakcie rozwoju");
 	} else {
-		if ($(this).css("background-color") == "rgb(220, 220, 220)") {
-			if ((moveCounter % 2) != 0) {
-				$(this).css("background-color","blue");
-			} else {
-				$(this).css("background-color","red");
+		if ((moveCounter % 2) != 0) {
+
+			// logika kolorowania najniższego wolnego pola poprzez kliknęcie kolumny
+			var currentTdIndex = $(this).parents("tr").find("td").index($(this).parent());
+			var rowQty = $(this).parents("tbody").find("tr").length;
+			for (var i = rowQty - 1; i >= 0; --i) {
+				var divCSS = $(this).parents("tbody").find("tr").eq(i).find("td").eq(currentTdIndex).find("div");
+				if (divCSS.css("background-color") == "rgb(220, 220, 220)") {
+					divCSS.css("background-color","blue");
+					break;
+				}
 			}
-			moveCounter += 1;
+			// console.log(currentTdIndex);
+			// console.log(rowQty)
+			// console.log($(this).parents("tbody").find("tr").eq(5).find("td").eq(currentTdIndex));
+			// console.log($(this).parents("tbody").find("tr").eq(5).find("td").eq(currentTdIndex).find("div").css("background-color"));
+			// console.log($(this).index($(this).parents("tr").find("td")));
+			// console.log($(this).parents("tbody").find("tr").eq(5));
+			// for (var i = rowQty - 1; i >= 0; --i) {
+			// 	if (true) {
+			//
+			// 	}
+			//
+			// 	console.log($(this).parents("tbody").find("tr").eq(i));
+			// }
+
+		} else {
+			var currentTdIndex = $(this).parents("tr").find("td").index($(this).parent());
+			var rowQty = $(this).parents("tbody").find("tr").length;
+			for (var i = rowQty - 1; i >= 0; --i) {
+				var divCSS = $(this).parents("tbody").find("tr").eq(i).find("td").eq(currentTdIndex).find("div");
+				if (divCSS.css("background-color") == "rgb(220, 220, 220)") {
+					divCSS.css("background-color","red");
+					break;
+				}
+			}
 		}
+		moveCounter += 1;
 	}
 }
 

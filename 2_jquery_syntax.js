@@ -154,6 +154,11 @@ $("a[target!='_blank']") // zwraca wszystkie A gdzie atrybut TARGET nie równy j
 // Na przykład:
 $("p").eq(2) // zwróci 3 akapit P z listy wszystkich akapitów
 
+.index(arrayList) // zwraca numer indeksu pod którym znajduje się element w kolekcji elementówa
+// zwracanych przez metody zwracające kolekcje elementów.
+// Na przykład:
+
+
 .first() // zwraca pierwszy element z listy
 // Na przykład:
 $("li").first() // zwóric pierwszy element LI z listy wszystkich elementów wchodzących
