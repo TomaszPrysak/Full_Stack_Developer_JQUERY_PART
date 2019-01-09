@@ -5,50 +5,34 @@ var singleInput = $("#inputSingle");
 var multiInput = $("#multiBox input");
 var playButton = 	$("#play");
 var resetButton = $("#reset");
-var resetButton = $("#reset");
 var newGameButton = $("#newGame");
 var squares = $("td div");
 var numPlayers;
 var moveCounter = 1;
 
-// Prosty sposób w JavaScript na sprawdzenie czy wartośc znajduje się w tabeli:
-// if (row3.indexOf(7) == "-1") {
-// 	console.log("nie ma w tabeli");
-// }else{
-// 	console.log(row1.indexOf(1));
-// }
-
-
-
 function singlePlayer(){
 	alert("Opcja w trakcie rozwoju");
-	if (multiInput.eq(0).prop("disabled") == false) {
-		alert('Wybrano rodzaj rozgrywki Multi-player')
-	}
-	// if (multiInput.eq(0).prop("disabled") == false) {
-	// 	alert('Wybrano rodzaj rozgrywki Multi-player')
-	// }else{
-	// 	numPlayers = 1;
-	// 	singleInput.prop("disabled",false);
-	// 	playButton.prop('disabled', false);
-	// 	playButton.on({click: prepareGame});
-	// 	 alert("Opcja w trakcie rozwoju\nBrak możliwości rozgrywki\nOdśwież stronę");
-	// }
+	// numPlayers = 1;
+	// $("#multi").prop('disabled', true);
+	// singleInput.prop("disabled",false);
+	// playButton.prop('disabled', false);
+	// playButton.on({click: prepareGame});
 }
 
 function multiPlayer(){
-	if (singleInput.prop("disabled") == false) {
-		alert('Wybrano rodzaj rozgrywki Single-player')
-	} else {
-		numPlayers = 2;
-		multiInput.prop('disabled', false);
-		playButton.prop('disabled', false);
-		playButton.on({click: prepareGame});
-	}
+	numPlayers = 2;
+	$("#single").prop('disabled', true)
+	multiInput.prop('disabled', false);
+	playButton.prop('disabled', false);
+	playButton.on({click: prepareGame});
 }
 
 function prepareGame(){
+	$("#single").prop('disabled', true);
+	$("#multi").prop('disabled', true);
 	playButton.prop('disabled', true);
+	multiInput.prop('disabled', true);
+	singleInput.prop('disabled', true);
 	resetButton.prop('disabled', false);
 	newGameButton.prop('disabled', false);
 	resetButton.on({click: wyczysc});
@@ -69,8 +53,14 @@ function putMark(){
 		alert("Opcja w trakcie rozwoju");
 	} else {
 		if ((moveCounter % 2) != 0) {
-
-			// logika kolorowania najniższego wolnego pola poprzez kliknęcie kolumny
+			// Logika kolorowania najniższego wolnego pola poprzez kliknęcie kolumny.
+			// Do zmiennej currentTdIndex przypisywany jest index klikniętego pola z kolekcji elementów TD których rodzicem jest wiersz tabeli TR.
+			// Do zmiennej rowQty przypisana jest ilość wierszy TR występująca w naszej tabeli.
+			// Następnie iterujemy przez wszystkie wiersze od samoego dołu, ponieważ kolory będą umieszczane od samego dołu jeżeli pole jest wolne.
+			// Z każdym przebiegiem pętli do zmiennej divCSS przypisywane jest pole kolumny w którą kliknęnlismy i najpierw od pola na samym dole.
+			// Następnie jest sprawdzany kolor tła pola, jezeli jest on koloru rgb(220, 220, 220) to stawiany jest kolor niebieski lub czerwony. I pętla jest przerywana.
+			// Jeżeli jest już kolor niebieski lub czerwony to pętla przechodzi do następnej iteracji.
+			// I sprawdzane jest pole następne w góre kolumny.
 			var currentTdIndex = $(this).parents("tr").find("td").index($(this).parent());
 			var rowQty = $(this).parents("tbody").find("tr").length;
 			for (var i = rowQty - 1; i >= 0; --i) {
@@ -80,20 +70,6 @@ function putMark(){
 					break;
 				}
 			}
-			// console.log(currentTdIndex);
-			// console.log(rowQty)
-			// console.log($(this).parents("tbody").find("tr").eq(5).find("td").eq(currentTdIndex));
-			// console.log($(this).parents("tbody").find("tr").eq(5).find("td").eq(currentTdIndex).find("div").css("background-color"));
-			// console.log($(this).index($(this).parents("tr").find("td")));
-			// console.log($(this).parents("tbody").find("tr").eq(5));
-			// for (var i = rowQty - 1; i >= 0; --i) {
-			// 	if (true) {
-			//
-			// 	}
-			//
-			// 	console.log($(this).parents("tbody").find("tr").eq(i));
-			// }
-
 		} else {
 			var currentTdIndex = $(this).parents("tr").find("td").index($(this).parent());
 			var rowQty = $(this).parents("tbody").find("tr").length;
@@ -112,26 +88,21 @@ function putMark(){
 function nowaGra(){
 	moveCounter = 1;
 	wyczysc();
-	for (var i = 0; i < squares.length; i++) {
-		squares[i].removeEventListener("click", putMark);
-	};
-	playButton.disabled = true;
-	resetButton.disabled = true;
-	newGameButton.disabled = true;
-	for (var i = 0; i < multiInput.length; i++) {
-		multiInput[i].disabled = true;
-	}
-	document.querySelector("#firstPlayer").textContent = "First player";
-	multiInput[0].value = "Player One";
-	document.querySelector("#secondPlayer").textContent = "Second Player";
-	multiInput[1].value = "Player Two";
-	// singleInput.disabled = true;
+	squares.css("opacity", "0.3")
+	squares.off({click: putMark})
+	$("#single").prop('disabled', false);
+	$("#multi").prop('disabled', false);
+	playButton.prop('disabled', true);
+	resetButton.prop('disabled', true);
+	newGameButton.prop('disabled', true);
+	multiInput.prop('disabled', true);
+	$("#firstPlayer").html("First player");
+	multiInput.eq(0).val("Player One");
+	$("#secondPlayer").html("Second Player");
+	multiInput.eq(1).val("Player Two");
 }
 
 function wyczysc(){
-	var x = document.querySelectorAll('td').length;
-	for (var i = 0; i < x; i++) {
-		document.querySelectorAll('td')[i].textContent = "";
-	}
+	squares.css("background-color","rgb(220, 220, 220)");
 	moveCounter = 1;
 }
