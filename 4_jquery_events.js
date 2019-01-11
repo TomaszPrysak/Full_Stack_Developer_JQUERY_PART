@@ -145,8 +145,8 @@ $("#rozluznijSie").blur(function(){
 // UWAGA !!!
 // Bardzo ważna metoda:
 // on - metoda ta umożliwia podłączyć jedno lub więcej zdarzeń do jednego elementu HTML
-.on(eventMethond, function({code when event})) // DOTYCZY JEDNEGO ZDARZENIA
-//  sposób zapisu jeżeli za pomocą metdoy .on() przypiszamy
+.on("eventMethond", function({code when event})) // DOTYCZY JEDNEGO ZDARZENIA
+// sposób zapisu jeżeli za pomocą metdoy .on() przypiszamy
 // do elementu tylko jedno zdarzenie. Oczywiście jeżeli chcemy przypisać tylko jedno Zdarzenie
 // to możemy to zrobić wprost. Takie metody opisywaliśmy powyżej.
 .on({firstEventMethond: function(){code when event},
@@ -168,6 +168,17 @@ $("#wielokrotneZdarzenia").on({
 }); // do elementu o id="wielokrotneZdarzenia" przypiente zostały dwa zdarzenia,
 // jedno wywoływane poprzez wciśnięcie klawisza myszki na elemencie, a drugie
 // podczas puszczania tego klawisza z elementu.
+
+// off - metoda ta umozliwia odłączyć istniejące reakcje na zdarzenia na elemencie html
+.off("eventMethond", function({code when event})) // DOTYCZY JEDNEGO ZDARZENIA
+// sposób zapisu jeżeli za pomocą metdoy .off() odłączamy
+// od elementu HTML tylko jedno zdarzenie.
+.off({firstEventMethond: function(){code when event},
+		 secondEventMethond: function(){code when event},
+		 itd...
+}) // DOTYCZY WIELU ZDARZEŃ sposób zapisu jeżeli od elementu HTML chcemy odłączyć kilka zdarzeń.
+// Musimy pamiętać o dodatkowych nawiasach "{}", w których wnętrzu umieszczamy
+// zdarzenia jakie chcemy odłączyć od naszego elementu HTML.
 
 // UWAGA !!!
 // Przydatną funkcjonalnością podczas metod dodających reakcje na zdarzenia jest możliwość

@@ -24,7 +24,7 @@ function multiPlayer(){
 	$("#single").prop('disabled', true)
 	multiInput.prop('disabled', false);
 	playButton.prop('disabled', false);
-	playButton.on({click: prepareGame});
+	playButton.unbind("click").on({click: prepareGame});
 }
 
 function prepareGame(){
