@@ -49,48 +49,30 @@ function prepareGame(){
 }
 
 function checkWinner(mark, TDindex, TRindex, color){
-	var winner;
-	if (color == "rgb(0, 0, 255)") {
-		winner = multiInput.eq(0).val();
-	} else if (color == "rgb(255, 0, 0)") {
-		winner = multiInput.eq(1).val();
-	}
-
 	// console.log(TDindex);
 	// console.log(TRindex);
 	// console.log(color);
-
-	// Logika wygranej w poziomie.
-	// ...
-	var qtyDivSameColorInRow = mark.parents("tbody").find("tr").eq(TRindex).find("div").filter(function(index){return $(this).css("background-color") == color}).length;
-	if (qtyDivSameColorInRow >= 4) {
-		var divInSameRow = mark.parents("tbody").find("tr").eq(TRindex).find("div");
-		var colorCounter = 0;
-	 	for (var i = 0; i < divInSameRow.length; i++) {
-			if (divInSameRow.eq(i).css("background-color") == color) {
-				colorCounter += 1;
-				if (colorCounter == 4) {
-					alert("Wygrał " + winner + "\nTeraz rozpocznie się nowa runda\nAby zagrać nowymi postaciami wybierz NEW GAME");
-					wyczysc();
-				}
-			} else {
-				colorCounter = 0;
-			}
-		}
-	}
-
-	// Logika wygranej w pionie.
-	// ...
+	// var allTr = mark.parents("tbody").find("tr");
+	// console.log(allTr);
+	// console.log();
+	// console.log(mark.parents("tbody").find("tr").find("td").find("div").filter(function(index){
+	// 	// return $(this).css("background-color") == "rgb(0, 0, 255)" })
+	// 	return $(this).parents("tr"). })
+	// )
+	// console.log(mark.parents("tbody").find("tr").find("td").filter(function(index){
+	// 	return $(this).index() == TDindex && $(this).children().css("background-color") == "rgb(0, 0, 255)"})
+	// )
 	if (TRindex < 3) {
-		var divInSameColumn = mark.parents("tbody").find("div").filter(function(index){return $(this).parents("td").index() == TDindex });
-		var colorCounter = 0;
-		for (var i = TRindex; i < TRindex + 4; i++) {
-			if (divInSameColumn.eq(i).css("background-color") == color) {
-				colorCounter += 1;
-				if (colorCounter == 4) {
-					alert("Wygrał " + winner + "\nTeraz rozpocznie się nowa runda\nAby zagrać nowymi postaciami wybierz NEW GAME");
-					wyczysc();
-				}
+		var tdWithSameColor = mark.parents("tbody").find("tr").find("td").filter(function(index){return $(this).index() == TDindex && $(this).children().css("background-color") == color });
+		if (color == "rgb(0, 0, 255)") {
+			for (var i = 0; i < tdWithSameColor.length; i++) {
+				var currentDivIndex = mark.parents("tbody").find("div").index(tdWithSameColor.eq(i).children());
+				console.log(currentDivIndex);
+			}
+		} else if (color == "rgb(255, 0, 0)") {
+			for (var i = 0; i < tdWithSameColor.length; i++) {
+				var currentDivIndex = mark.parents("tbody").find("div").index(tdWithSameColor.eq(i).children());
+				console.log(currentDivIndex);
 			}
 		}
 	}
@@ -102,14 +84,16 @@ function putMark(){
 	} else {
 		if ((moveCounter % 2) != 0) {
 			// Logika kolorowania najniższego wolnego pola poprzez kliknęcie kolumny.
-			// Do zmiennej currentTdIndex przypisywany jest index klikniętego pola DIV (nie kolumny) z kolekcji elementów TD których rodzicem jest wiersz tabeli TR.
+			// Do zmiennej currentTdIndex przypisywany jest index klikniętego pola z kolekcji elementów TD których rodzicem jest wiersz tabeli TR.
 			// Do zmiennej rowQty przypisana jest ilość wierszy TR występująca w naszej tabeli.
 			// Następnie iterujemy przez wszystkie wiersze od samoego dołu, ponieważ kolory będą umieszczane od samego dołu jeżeli pole jest wolne.
 			// Z każdym przebiegiem pętli do zmiennej divCSS przypisywane jest pole kolumny w którą kliknęnlismy i najpierw od pola na samym dole.
-			// Następnie jest sprawdzany kolor tła pola, jezeli jest on koloru rgb(220, 220, 220) (czyli szare) to stawiany jest kolor niebieski lub czerwony. I pętla jest przerywana.
-			// Jeżeli pole jest innego koloru niż szary czyli niebieski lub czerwony to pętla przechodzi do następnej iteracji.
-			// Wcześniej jednak odpalana jest funkcja checkWinner która sprawdza czy
-			// I potem sprawdzane jest pole następne w góre kolumny.
+			// Następnie jest sprawdzany kolor tła pola, jezeli jest on koloru rgb(220, 220, 220) to stawiany jest kolor niebieski lub czerwony. I pętla jest przerywana.
+			// Jeżeli jest już kolor niebieski lub czerwony to pętla przechodzi do następnej iteracji.
+			// I sprawdzane jest pole następne w góre kolumny.
+			// console.log($(this).parents("tbody").find("div").index($(this)));
+			// console.log($(this).parent());
+			// console.log($(this).parents("tr").find("td"));
 			var currentTdIndex = $(this).parents("tr").find("td").index($(this).parent());
 			var rowQty = $(this).parents("tbody").find("tr").length;
 			var blue = "rgb(0, 0, 255)"

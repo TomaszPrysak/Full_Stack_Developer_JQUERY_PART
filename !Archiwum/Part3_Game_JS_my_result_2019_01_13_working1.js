@@ -63,10 +63,13 @@ function checkWinner(mark, TDindex, TRindex, color){
 	// Logika wygranej w poziomie.
 	// ...
 	var qtyDivSameColorInRow = mark.parents("tbody").find("tr").eq(TRindex).find("div").filter(function(index){return $(this).css("background-color") == color}).length;
+	// console.log(qtyDivSameColorInRow);
 	if (qtyDivSameColorInRow >= 4) {
+		// console.log("test");
 		var divInSameRow = mark.parents("tbody").find("tr").eq(TRindex).find("div");
 		var colorCounter = 0;
 	 	for (var i = 0; i < divInSameRow.length; i++) {
+		 	// console.log(divInSameRow.eq(i).css("background-color"));
 			if (divInSameRow.eq(i).css("background-color") == color) {
 				colorCounter += 1;
 				if (colorCounter == 4) {
@@ -102,14 +105,13 @@ function putMark(){
 	} else {
 		if ((moveCounter % 2) != 0) {
 			// Logika kolorowania najniższego wolnego pola poprzez kliknęcie kolumny.
-			// Do zmiennej currentTdIndex przypisywany jest index klikniętego pola DIV (nie kolumny) z kolekcji elementów TD których rodzicem jest wiersz tabeli TR.
+			// Do zmiennej currentTdIndex przypisywany jest index klikniętego pola z kolekcji elementów TD których rodzicem jest wiersz tabeli TR.
 			// Do zmiennej rowQty przypisana jest ilość wierszy TR występująca w naszej tabeli.
 			// Następnie iterujemy przez wszystkie wiersze od samoego dołu, ponieważ kolory będą umieszczane od samego dołu jeżeli pole jest wolne.
 			// Z każdym przebiegiem pętli do zmiennej divCSS przypisywane jest pole kolumny w którą kliknęnlismy i najpierw od pola na samym dole.
-			// Następnie jest sprawdzany kolor tła pola, jezeli jest on koloru rgb(220, 220, 220) (czyli szare) to stawiany jest kolor niebieski lub czerwony. I pętla jest przerywana.
-			// Jeżeli pole jest innego koloru niż szary czyli niebieski lub czerwony to pętla przechodzi do następnej iteracji.
-			// Wcześniej jednak odpalana jest funkcja checkWinner która sprawdza czy
-			// I potem sprawdzane jest pole następne w góre kolumny.
+			// Następnie jest sprawdzany kolor tła pola, jezeli jest on koloru rgb(220, 220, 220) to stawiany jest kolor niebieski lub czerwony. I pętla jest przerywana.
+			// Jeżeli jest już kolor niebieski lub czerwony to pętla przechodzi do następnej iteracji.
+			// I sprawdzane jest pole następne w góre kolumny.
 			var currentTdIndex = $(this).parents("tr").find("td").index($(this).parent());
 			var rowQty = $(this).parents("tbody").find("tr").length;
 			var blue = "rgb(0, 0, 255)"
