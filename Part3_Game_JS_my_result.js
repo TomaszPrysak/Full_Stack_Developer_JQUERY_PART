@@ -55,13 +55,17 @@ function checkWinner(mark, TDindex, TRindex, color){
 	} else if (color == "rgb(255, 0, 0)") {
 		winner = multiInput.eq(1).val();
 	}
-
-	// console.log(TDindex);
-	// console.log(TRindex);
-	// console.log(color);
-
 	// Logika wygranej w poziomie.
-	// ...
+	// Do zmiennej qtyDivSameColorInRow przypisywana jest kolekcja elementów DIV o tym samym kolorze w tym samym wierszu.
+	// Następnie sprawdzana jest ilość elementów w kolekcji qtyDivSameColorInRow. Jeżeli jest więcej lub równo cztery to sprawdzana jest czy kolory te są położone obok siebie po kolei.
+	// A więc do zmiennej divInSameRow przypisywana jest kolekcja elementów DIV w tym samym wierszu.
+	// Następnie ustawiamy zmienną colorCounter na wartość 0. Zmienna ta będzie wykorzystywana do liczenia ilości takich samych kolorów po kolei w poziomie.
+	// W pętli o długości kolekcji divInSameRow iterowane są elementy z tego samego wiersza.
+	// W każdym przebiegu sprawdzane jest czy kolor w elemencie jest tego samego koloru co kolor przekazywany do funkcji.
+	// Jeżeli jest ten sam kolor to zmienna colorCounter jest inkrementowana o jeden.
+	// Natomiast jeżeli jest inny kolor to zmienna colorCounter jest spowrotem ustawiana na 0.
+	// Musimy tak zrobić gdyż nie iterujemy tylko przez czerty elementy a przez wszystkie z tego samego wiersza.
+	// Jeżeli zmienna colorCounter osiągnie wartość 4 to znaczy, że po kolei są cztery takie same kolory i gra jest przrywana i wyswietlany komunukat o wygranej jednego z graczy.
 	var qtyDivSameColorInRow = mark.parents("tbody").find("tr").eq(TRindex).find("div").filter(function(index){return $(this).css("background-color") == color}).length;
 	if (qtyDivSameColorInRow >= 4) {
 		var divInSameRow = mark.parents("tbody").find("tr").eq(TRindex).find("div");
@@ -80,8 +84,16 @@ function checkWinner(mark, TDindex, TRindex, color){
 	}
 
 	// Logika wygranej w pionie.
-	// ...
+	// Wygrana w pionie i po przekątnej są możliwe tylko jeżeli ilość wypełnionych pól sięga trzeciego rzędu od góry,
+	// czyli rzędu o indeksie 2 z kolekcji elementów będących rzędami tabeli.
 	if (TRindex < 3) {
+		// Do zmiennej divInSameColumn przypisywana jest kolekcja elementów DIV będące w jednej kolumnie.
+		// Takimi elementami są elementy DIV którymi rodzicami są elementy TD o tym samym indeksie który jest przekazywany do naszej funkcji w argumencie TDindex.
+		// Następnie ustawiamy zmienną colorCounter na wartość 0. Zmienna ta będzie wykorzystywana do liczenia ilości takich samych kolorów po kolei w pionie.
+		// W pętli iterowane są elementu z tej samej kolumny. W każdym przebiegu sprawdzane jest czy kolor w elemencie jest tego samego koloru co kolor przekazywany do funkcji.
+		// Jeżeli jest ten sam to zmienna colorCounter jest inkrementowana o jeden.
+		// Sa tylko cztery przebiegi pętli bo tyle musi być kolorów w pionie aby uznać wygraną.
+		// Jeżeli zmienna colorCounter osiągnie wartość 4 to gra jest przrywana i wyswietlany komunukat o wygranej jednego z graczy.
 		var divInSameColumn = mark.parents("tbody").find("div").filter(function(index){return $(this).parents("td").index() == TDindex });
 		var colorCounter = 0;
 		for (var i = TRindex; i < TRindex + 4; i++) {
@@ -92,6 +104,72 @@ function checkWinner(mark, TDindex, TRindex, color){
 					wyczysc();
 				}
 			}
+		}
+	}
+
+	// Logika wygranej po przekątnej.
+	// W przypadku wygranej po przekątnej nie ograniczałem się aby sprawdzana była aktualna przekątna.
+	// (W przypadku wygranej w pionie i poziomie sprawdzane były tylko aktualne kolumny bądź wiersze. Po to aby zoptymalizować działanie.)
+	// (Nie było potrzebne aby z każdym postawieniem znaku sprawdzana była każda możliwa wygrana w pionie i poziomie.)
+	// Po prostu z każdym postawieniem znaku sprawdzana jest każda mozliwa przekątna.
+	// Iterowane są możliwe przekątne od samej góry aż do dołu.
+	// Pętla do iterowania przez poczatek każdej przękątnej którą jest wiersz
+	for (var row = 0; row < 3; row++) {
+		// Pętla do iterowania przez kolejne pola przekątnej
+		for (var col = 0; col < 7; col++) {
+			// Pierwsza przekątna Od lewej do prawej.
+			// Dlatego aby osiągnąć cztery pola w przekątnej pierwsze pole może być w kolumnach między 0 i 3 włącznie.
+			if (col <= 3) {
+				// Do zmiennej rowForCheckDiagonal przypisujemy aktualną wartość indeksu wiersza pierwszego elementu w przekątnej (od góry).
+				// Następnie ustawiamy zmienną colorCounter na wartość 0. Zmienna ta będzie wykorzystywana do liczenia ilości takich samych kolorów po kolei po przekątnej.
+				// W pętli o długości czterech iteracji sprawdzane jest czy kolor w elemencie jest tego samego koloru co kolor przekazywany do funkcji.
+				// Jeżeli jest ten sam kolor to zmienna colorCounter jest inkrementowana o jeden.
+				// Sa tylko cztery przebiegi pętli bo tyle musi być kolorów po przekątnej aby uznać wygraną.
+				// Jeżeli zmienna colorCounter osiągnie wartość 4 to gra jest przrywana i wyswietlany komunukat o wygranej jednego z graczy.
+				// Z każdym przebiegiem zmienna rowForCheckDiagonal jest inkrementowana o jeden ponieważ chcemy aby z każdym przebiegiem sprawdzane było pole o jeden w dół.
+				// Natomiast, aby dodatkowo pole było o jeden w prawo to zmienna colForCheckDiagonal będąca zmienną pętli jest inkrementowana o jeden.
+				// Ponieważ indeksy wierszy rosną o w dół a kolumn w prawo. A my chcemy uzyskac efekt w dół i w prawo.
+				var rowForCheckDiagonal = row;
+				var colorCounter = 0;
+				for (var colForCheckDiagonal = col; colForCheckDiagonal < col + 4; colForCheckDiagonal++) {
+					var divForCheckDiagonal = mark.parents("tbody").find("tr").eq(rowForCheckDiagonal).find("td").eq(colForCheckDiagonal).find("div");
+					if (divForCheckDiagonal.css("background-color") == color) {
+						colorCounter += 1;
+						if (colorCounter == 4) {
+							alert("Wygrał " + winner + "\nTeraz rozpocznie się nowa runda\nAby zagrać nowymi postaciami wybierz NEW GAME");
+							wyczysc();
+						}
+					}
+					rowForCheckDiagonal += 1
+				}
+			}
+			// Drugi rodzaj przekątnej od prawej do lewej.
+			// Dlatego aby osiągnąć cztery pola w tej przekątnej pierwsze pole może być w kolumnach między 3 i 6 włącznie.
+			if (col >= 3) {
+				// Do zmiennej rowForCheckDiagonal przypisujemy aktualną wartość indeksu wiersza pierwszego elementu w przekątnej (od góry).
+				// Następnie ustawiamy zmienną colorCounter na wartość 0. Zmienna ta będzie wykorzystywana do liczenia ilości takich samych kolorów po kolei po przekątnej.
+				// W pętli o długości czterech iteracji sprawdzane jest czy kolor w elemencie jest tego samego koloru co kolor przekazywany do funkcji.
+				// Jeżeli jest ten sam kolor to zmienna colorCounter jest inkrementowana o jeden.
+				// Sa tylko cztery przebiegi pętli bo tyle musi być kolorów po przekątnej aby uznać wygraną.
+				// Jeżeli zmienna colorCounter osiągnie wartość 4 to gra jest przrywana i wyswietlany komunukat o wygranej jednego z graczy.
+				// Z każdym przebiegiem zmienna rowForCheckDiagonal jest inkrementowana o jeden, ponieważ chcemy aby z każdym przebiegiem sprawdzane było pole o jeden w dół.
+				// Natomiast, aby dodatkowo pole było o jeden w lewo to zmienna colForCheckDiagonal będąca zmienną pętli jest dekrementowana, pomniejszana o jeden.
+				// Ponieważ indeksy wierszy rosną o w dół a kolumn w prawo. A my chcemy uzyskac efekt w dół i w lewo.
+				var rowForCheckDiagonal = row;
+				var colorCounter = 0;
+				for (var colForCheckDiagonal = col; colForCheckDiagonal > col - 4; --colForCheckDiagonal) {
+					var divForCheckDiagonal = mark.parents("tbody").find("tr").eq(rowForCheckDiagonal).find("td").eq(colForCheckDiagonal).find("div");
+					if (divForCheckDiagonal.css("background-color") == color) {
+						colorCounter += 1;
+						if (colorCounter == 4) {
+							alert("Wygrał " + winner + "\nTeraz rozpocznie się nowa runda\nAby zagrać nowymi postaciami wybierz NEW GAME");
+							wyczysc();
+						}
+					}
+					rowForCheckDiagonal += 1
+				}
+			}
+
 		}
 	}
 }
@@ -105,18 +183,23 @@ function putMark(){
 			// Do zmiennej currentTdIndex przypisywany jest index klikniętego pola DIV (nie kolumny) z kolekcji elementów TD których rodzicem jest wiersz tabeli TR.
 			// Do zmiennej rowQty przypisana jest ilość wierszy TR występująca w naszej tabeli.
 			// Następnie iterujemy przez wszystkie wiersze od samoego dołu, ponieważ kolory będą umieszczane od samego dołu jeżeli pole jest wolne.
-			// Z każdym przebiegiem pętli do zmiennej divCSS przypisywane jest pole kolumny w którą kliknęnlismy i najpierw od pola na samym dole.
+			// Z każdym przebiegiem pętli do zmiennej div przypisywane jest pole kolumny w którą kliknęnlismy i najpierw od pola na samym dole.
 			// Następnie jest sprawdzany kolor tła pola, jezeli jest on koloru rgb(220, 220, 220) (czyli szare) to stawiany jest kolor niebieski lub czerwony. I pętla jest przerywana.
-			// Jeżeli pole jest innego koloru niż szary czyli niebieski lub czerwony to pętla przechodzi do następnej iteracji.
-			// Wcześniej jednak odpalana jest funkcja checkWinner która sprawdza czy
+			// Jeżeli pole jest innego koloru niż szary czyli niebieske lub czerwone to pętla przechodzi do następnej iteracji.
 			// I potem sprawdzane jest pole następne w góre kolumny.
+			// Z każdym przebiegiem pętli wywoływana jest funkcja checkWinner sprawdzająca czy postawiony znak jednocześnie daje zwycięstwo któremuś z graczy.
+			// W funkcji przekazywane są nastepujące parametry:
+			// $(this) - odwołanie do klikanego elementy
+			// currentTdIndex - aktualny indeks elementu TD w wierszu
+			// currentTrIndex - aktualny indeks wiersza
+			// color - aktualny kolor stawiany w polu
 			var currentTdIndex = $(this).parents("tr").find("td").index($(this).parent());
 			var rowQty = $(this).parents("tbody").find("tr").length;
 			var blue = "rgb(0, 0, 255)"
 			for (var currentTrIndex = rowQty - 1; currentTrIndex >= 0; --currentTrIndex) {
-				var divCSS = $(this).parents("tbody").find("tr").eq(currentTrIndex).find("td").eq(currentTdIndex).find("div");
-				if (divCSS.css("background-color") == "rgb(220, 220, 220)") {
-					divCSS.css("background-color",blue);
+				var div = $(this).parents("tbody").find("tr").eq(currentTrIndex).find("td").eq(currentTdIndex).find("div");
+				if (div.css("background-color") == "rgb(220, 220, 220)") {
+					div.css("background-color",blue);
 					checkWinner($(this),currentTdIndex, currentTrIndex, blue);
 					break;
 				}
@@ -126,9 +209,9 @@ function putMark(){
 			var rowQty = $(this).parents("tbody").find("tr").length;
 			var red = "rgb(255, 0, 0)"
 			for (var currentTrIndex = rowQty - 1; currentTrIndex >= 0; --currentTrIndex) {
-				var divCSS = $(this).parents("tbody").find("tr").eq(currentTrIndex).find("td").eq(currentTdIndex).find("div");
-				if (divCSS.css("background-color") == "rgb(220, 220, 220)") {
-					divCSS.css("background-color",red);
+				var div = $(this).parents("tbody").find("tr").eq(currentTrIndex).find("td").eq(currentTdIndex).find("div");
+				if (div.css("background-color") == "rgb(220, 220, 220)") {
+					div.css("background-color",red);
 					checkWinner($(this),currentTdIndex, currentTrIndex, red);
 					break;
 				}
