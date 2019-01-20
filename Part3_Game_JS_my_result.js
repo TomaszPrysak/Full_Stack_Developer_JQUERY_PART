@@ -178,46 +178,55 @@ function putMark(){
 	if (numPlayers == 1) {
 		alert("Opcja w trakcie rozwoju");
 	} else {
-		if ((moveCounter % 2) != 0) {
-			// Logika kolorowania najniższego wolnego pola poprzez kliknęcie kolumny.
-			// Do zmiennej currentTdIndex przypisywany jest index klikniętego pola DIV (nie kolumny) z kolekcji elementów TD których rodzicem jest wiersz tabeli TR.
-			// Do zmiennej rowQty przypisana jest ilość wierszy TR występująca w naszej tabeli.
-			// Następnie iterujemy przez wszystkie wiersze od samoego dołu, ponieważ kolory będą umieszczane od samego dołu jeżeli pole jest wolne.
-			// Z każdym przebiegiem pętli do zmiennej div przypisywane jest pole kolumny w którą kliknęnlismy i najpierw od pola na samym dole.
-			// Następnie jest sprawdzany kolor tła pola, jezeli jest on koloru rgb(220, 220, 220) (czyli szare) to stawiany jest kolor niebieski lub czerwony. I pętla jest przerywana.
-			// Jeżeli pole jest innego koloru niż szary czyli niebieske lub czerwone to pętla przechodzi do następnej iteracji.
-			// I potem sprawdzane jest pole następne w góre kolumny.
-			// Z każdym przebiegiem pętli wywoływana jest funkcja checkWinner sprawdzająca czy postawiony znak jednocześnie daje zwycięstwo któremuś z graczy.
-			// W funkcji przekazywane są nastepujące parametry:
-			// $(this) - odwołanie do klikanego elementy
-			// currentTdIndex - aktualny indeks elementu TD w wierszu
-			// currentTrIndex - aktualny indeks wiersza
-			// color - aktualny kolor stawiany w polu
-			var currentTdIndex = $(this).parents("tr").find("td").index($(this).parent());
-			var rowQty = $(this).parents("tbody").find("tr").length;
-			var blue = "rgb(0, 0, 255)"
-			for (var currentTrIndex = rowQty - 1; currentTrIndex >= 0; --currentTrIndex) {
-				var div = $(this).parents("tbody").find("tr").eq(currentTrIndex).find("td").eq(currentTdIndex).find("div");
-				if (div.css("background-color") == "rgb(220, 220, 220)") {
-					div.css("background-color",blue);
-					checkWinner($(this),currentTdIndex, currentTrIndex, blue);
-					break;
-				}
-			}
+		console.log(moveCounter);
+		// Sprawdzenie czy aktualnie uzupełniane pole jest ostatnie do uzupełniena.
+		// Wszystkich pól jest 42. A wiec skoro uzupełniane jest ostatnie to znaczy, że nikt do tej pory nie wygrał.
+		// Wyświetli się zatem komunikat o remisie i rozgrywka rozpocznie się od nowa.
+		if (moveCounter == 42) {
+			alert("REMIS\nTeraz rozpocznie się nowa runda\nAby zagrać nowymi postaciami wybierz NEW GAME");
+			wyczysc();
 		} else {
-			var currentTdIndex = $(this).parents("tr").find("td").index($(this).parent());
-			var rowQty = $(this).parents("tbody").find("tr").length;
-			var red = "rgb(255, 0, 0)"
-			for (var currentTrIndex = rowQty - 1; currentTrIndex >= 0; --currentTrIndex) {
-				var div = $(this).parents("tbody").find("tr").eq(currentTrIndex).find("td").eq(currentTdIndex).find("div");
-				if (div.css("background-color") == "rgb(220, 220, 220)") {
-					div.css("background-color",red);
-					checkWinner($(this),currentTdIndex, currentTrIndex, red);
-					break;
+			if ((moveCounter % 2) != 0) {
+				// Logika kolorowania najniższego wolnego pola poprzez kliknęcie kolumny.
+				// Do zmiennej currentTdIndex przypisywany jest index klikniętego pola DIV (nie kolumny) z kolekcji elementów TD których rodzicem jest wiersz tabeli TR.
+				// Do zmiennej rowQty przypisana jest ilość wierszy TR występująca w naszej tabeli.
+				// Następnie iterujemy przez wszystkie wiersze od samoego dołu, ponieważ kolory będą umieszczane od samego dołu jeżeli pole jest wolne.
+				// Z każdym przebiegiem pętli do zmiennej div przypisywane jest pole kolumny w którą kliknęnlismy i najpierw od pola na samym dole.
+				// Następnie jest sprawdzany kolor tła pola, jezeli jest on koloru rgb(220, 220, 220) (czyli szare) to stawiany jest kolor niebieski lub czerwony. I pętla jest przerywana.
+				// Jeżeli pole jest innego koloru niż szary czyli niebieske lub czerwone to pętla przechodzi do następnej iteracji.
+				// I potem sprawdzane jest pole następne w góre kolumny.
+				// Z każdym przebiegiem pętli wywoływana jest funkcja checkWinner sprawdzająca czy postawiony znak jednocześnie daje zwycięstwo któremuś z graczy.
+				// W funkcji przekazywane są nastepujące parametry:
+				// $(this) - odwołanie do klikanego elementy
+				// currentTdIndex - aktualny indeks elementu TD w wierszu
+				// currentTrIndex - aktualny indeks wiersza
+				// color - aktualny kolor stawiany w polu
+				var currentTdIndex = $(this).parents("tr").find("td").index($(this).parent());
+				var rowQty = $(this).parents("tbody").find("tr").length;
+				var blue = "rgb(0, 0, 255)"
+				for (var currentTrIndex = rowQty - 1; currentTrIndex >= 0; --currentTrIndex) {
+					var div = $(this).parents("tbody").find("tr").eq(currentTrIndex).find("td").eq(currentTdIndex).find("div");
+					if (div.css("background-color") == "rgb(220, 220, 220)") {
+						div.css("background-color",blue);
+						checkWinner($(this),currentTdIndex, currentTrIndex, blue);
+						break;
+					}
+				}
+			} else {
+				var currentTdIndex = $(this).parents("tr").find("td").index($(this).parent());
+				var rowQty = $(this).parents("tbody").find("tr").length;
+				var red = "rgb(255, 0, 0)"
+				for (var currentTrIndex = rowQty - 1; currentTrIndex >= 0; --currentTrIndex) {
+					var div = $(this).parents("tbody").find("tr").eq(currentTrIndex).find("td").eq(currentTdIndex).find("div");
+					if (div.css("background-color") == "rgb(220, 220, 220)") {
+						div.css("background-color",red);
+						checkWinner($(this),currentTdIndex, currentTrIndex, red);
+						break;
+					}
 				}
 			}
+			moveCounter += 1;
 		}
-		moveCounter += 1;
 	}
 }
 
